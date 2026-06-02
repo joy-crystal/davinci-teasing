@@ -56,3 +56,5 @@ venv/
 # Packaged application bundle / generated distribution
 Contents/
 
+# Local moodboard reference files
+docs/moodboard/
