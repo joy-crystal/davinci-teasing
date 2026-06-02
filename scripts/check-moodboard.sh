@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+set -eu
+
+ROOT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+MOODBOARD_DIR="$ROOT_DIR/moodboard"
+
+if [ ! -d "$MOODBOARD_DIR" ]; then
+  echo "moodboard directory not found: $MOODBOARD_DIR" >&2
+  exit 1
+fi
+
+echo "[moodboard files]"
+find "$MOODBOARD_DIR" -maxdepth 2 -type f ! -name '.DS_Store' -print | sort
+
+echo
+echo "[modified times]"
+find "$MOODBOARD_DIR" -maxdepth 2 -type f ! -name '.DS_Store' -print0 \
+  | xargs -0 stat -f '%Sm %N' -t '%Y-%m-%d %H:%M:%S' \
+  | sort
+
+echo
+echo "[sha256]"
+find "$MOODBOARD_DIR" -maxdepth 2 -type f ! -name '.DS_Store' -print0 \
+  | sort -z \
+  | xargs -0 shasum -a 256
+
+echo
+echo "[file types]"
+find "$MOODBOARD_DIR" -maxdepth 2 -type f ! -name '.DS_Store' -print0 \
+  | xargs -0 file \
+  | sort
+
