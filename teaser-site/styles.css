@@ -1467,7 +1467,7 @@ p {
 .final-loop {
   position: absolute;
   inset: 14% 10%;
-  overflow: hidden;
+  overflow: visible;
   pointer-events: none;
 }
 
