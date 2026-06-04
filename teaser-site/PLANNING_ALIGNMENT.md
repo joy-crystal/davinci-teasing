@@ -9,7 +9,7 @@
 |--------|----------------------|--------------------------|
 | `davinci-official-website/00-readme.md` | Position Davinci as `AI Runtime Orchestration Platform`; include Unified AI Runtime Pipeline, Agent Harness, Verification Gate, Native Studio, Design-to-Code, Workflow Operations. | Navigation and sections now use Pipeline, Routing, Workflow, Agent Harness, Native Studio, Verification-First Production, and Workflow Operations. |
 | `davinci-official-website/01-one-page-brief.md` | Explain runtime orchestration, evidence handoff, verification, and team operations continuity. | Hero, routing layers, workflow cards, guardrails, and operations lane now repeat runtime, evidence, verification, Git Worktree, PR Review, Jira, Slack, deploy, and monitor. |
-| `davinci-official-website/02-final-plan.md` | Hero category, translated hero lock, proof numbers, CTA hierarchy, full operations lane, stale claim removal. | Hero uses `AI Runtime Orchestration Platform`, translated production-line headline, `See the Pipeline`, `Download Davinci`, proof chips, and safe proof numbers. |
+| `davinci-official-website/02-final-plan.md` | Hero category, translated hero lock, proof numbers, CTA hierarchy, full operations lane, stale claim removal. | Hero uses `AI Runtime Orchestration Platform`, translated production-line headline, `See the Pipeline`, `View Studio`, proof chips, and safe proof numbers. |
 | `davinci-official-website/03-homepage-copy.md` | Use copy deck themes: Unified AI Runtime Pipeline, Agent Harness, Runtime-Aware Routing, Verification-First, Native Studio, Design-to-Code, Workflow Operations. | Section copy is rewritten around those themes instead of the previous generic AI development engine message. |
 | `davinci-official-website/04-content-spec.md` | Include content proof, CTA/event names, and avoid stale numbers or unsupported claims. | CTAs include `data-event` hooks, proof chips use safe public counts, and stale counts are removed from `teaser-site`. |
 | `davinci-official-website/05-wireframe-spec.md` | First viewport must show category, brand, CTA, pipeline preview; operations must be a workflow lane rather than logo badges. | Hero keeps brand/category/CTA/pipeline preview together; finale adds an operations lane from AI Output to Deploy / Monitor. |
@@ -22,7 +22,7 @@
 | Category | Hero eyebrow and metadata | `index.html`, `script.js` |
 | Production-line hero message | Hero line, translated from the official Korean lock copy because UI copy defaults to English | `index.html`, `script.js` |
 | Hero proof | `60+ workflow skills`, `33+ expert agents`, `20+ hook guardrails`, `3-Tier verification`, `Native Studio` chips | `index.html`, `styles.css` |
-| CTA hierarchy | `See the Pipeline` and `Download Davinci` | `index.html`, `script.js` |
+| CTA hierarchy | `See the Pipeline`, `View Studio`, and `View Proof` | `index.html`, `script.js` |
 | Unified AI Runtime Pipeline | Motion section and runtime copy | `index.html`, `script.js` |
 | Runtime-aware Routing | Routing layer cards: runtime, skill/agent, evidence, verification | `index.html`, `script.js` |
 | Agent Harness | Constellation map: PM Agent, skills, MCP tools, hooks, Reflexion, Handoff Chain, Evidence, Verification | `index.html`, `script.js` |

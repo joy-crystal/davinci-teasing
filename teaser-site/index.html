@@ -34,9 +34,12 @@
       </a>
       <div class="nav-actions">
         <nav>
-          <a href="#workflow" data-i18n="nav.workflow">Workflow</a>
+          <a href="#top" data-i18n="nav.product">Product</a>
+          <a href="#motion" data-i18n="nav.pipeline">Pipeline</a>
           <a href="#agents" data-i18n="nav.agents">Harness</a>
           <a href="#templates" data-i18n="nav.templates">Studio</a>
+          <a href="#proof" data-i18n="nav.proof">Proof</a>
+          <a href="#final-cta" data-i18n="nav.docs">Summary</a>
         </nav>
         <div class="language-toggle" role="group" aria-label="Language selection">
           <button type="button" data-lang-option="en" aria-pressed="true">EN</button>
@@ -46,15 +49,22 @@
     </header>
 
     <aside class="chapter-rail" aria-label="Page chapters">
-      <a href="#top" data-chapter-link="hero"><span>00</span><b data-i18n="chapter.start">Start</b></a>
-      <a href="#motion" data-chapter-link="motion"><span>01</span><b data-i18n="chapter.motion">Pipeline</b></a>
-      <a href="#system" data-chapter-link="system"><span>02</span><b data-i18n="chapter.system">Routing</b></a>
-      <a href="#workflow" data-chapter-link="workflow"><span>03</span><b data-i18n="chapter.workflow">Workflow</b></a>
+      <a href="#top" data-chapter-link="hero"><span>01</span><b data-i18n="chapter.start">Start</b></a>
+      <a href="#gap" data-chapter-link="gap"><span>02</span><b data-i18n="chapter.gap">Trust</b></a>
+      <a href="#motion" data-chapter-link="motion"><span>03</span><b data-i18n="chapter.motion">Pipeline</b></a>
       <a href="#agents" data-chapter-link="agents"><span>04</span><b data-i18n="chapter.agents">Harness</b></a>
-      <a href="#templates" data-chapter-link="templates"><span>05</span><b data-i18n="chapter.templates">Studio</b></a>
+      <a href="#system" data-chapter-link="system"><span>05</span><b data-i18n="chapter.system">Routing</b></a>
+      <a href="#guardrails" data-chapter-link="guardrails"><span>06</span><b data-i18n="chapter.guardrails">Verify</b></a>
+      <a href="#templates" data-chapter-link="templates"><span>07</span><b data-i18n="chapter.templates">Studio</b></a>
+      <a href="#design-code" data-chapter-link="design"><span>08</span><b data-i18n="chapter.design">Design</b></a>
+      <a href="#operations" data-chapter-link="operations"><span>09</span><b data-i18n="chapter.operations">Ops</b></a>
+      <a href="#comparison" data-chapter-link="comparison"><span>10</span><b data-i18n="chapter.comparison">Compare</b></a>
+      <a href="#proof" data-chapter-link="proof"><span>11</span><b data-i18n="chapter.proof">Proof</b></a>
+      <a href="#final-cta" data-chapter-link="cta"><span>12</span><b data-i18n="chapter.cta">Summary</b></a>
     </aside>
 
     <main id="top">
+      <!-- 01 / Hero -->
       <section class="hero section-viewport" data-section data-chapter="hero">
         <img
           class="hero-visual"
@@ -85,14 +95,16 @@
             Orchestrating the strengths of multiple AI runtimes into one production line.
           </p>
           <div class="hero-actions" aria-label="Primary actions">
-            <a class="button primary" href="#workflow" data-event="hero_cta_click" data-i18n="hero.cta.primary">See the Pipeline</a>
-            <a class="button secondary" href="#templates" data-event="desktop_download_click" data-i18n="hero.cta.secondary">Download Davinci</a>
+            <a class="button primary" href="#motion" data-event="hero_cta_click" data-i18n="hero.cta.primary">See the Pipeline</a>
+            <a class="button secondary" href="#templates" data-event="studio_view" data-i18n="hero.cta.secondary">View Studio</a>
           </div>
           <div class="hero-proof" aria-label="Davinci proof points">
             <span>60+ workflow skills</span>
             <span>33+ expert agents</span>
             <span>20+ hook guardrails</span>
+            <span>12K+ core harness LOC</span>
             <span>3-Tier verification</span>
+            <span>multi-runtime pipeline</span>
             <span>Native Studio</span>
           </div>
         </div>
@@ -106,53 +118,8 @@
         </div>
       </section>
 
-      <section id="motion" class="parallax-story" data-section data-chapter="motion" data-parallax-scene>
-        <div class="parallax-pin">
-          <div class="motion-backplane" data-depth data-x="-24" data-y="-10" data-scale="0.08">
-            <img
-              src="./assets/davinci-pipeline-preview.png"
-              alt=""
-              aria-hidden="true"
-            />
-          </div>
-          <div class="motion-grid" data-depth data-x="18" data-y="16" aria-hidden="true"></div>
-          <div class="motion-rail rail-a" data-depth data-x="-22" data-y="4" aria-hidden="true"></div>
-          <div class="motion-rail rail-b" data-depth data-x="24" data-y="-8" aria-hidden="true"></div>
-
-          <div class="motion-copy" data-depth data-x="-7" data-y="-3">
-            <p class="eyebrow" data-i18n="motion.eyebrow">Unified AI Runtime Pipeline</p>
-            <h2 data-i18n="motion.title">Different runtimes, one production line.</h2>
-            <p data-i18n="motion.body">
-              Claude Code, Codex CLI, Gemini CLI, and MCP/local tools move by role, context, and proof.
-            </p>
-          </div>
-
-          <div class="motion-stage" aria-label="Parallax workflow layers">
-            <article class="motion-card card-prompt" data-depth data-x="-30" data-y="-16" data-scale="0.05">
-              <span>01</span>
-              <strong data-i18n="motion.card.prompt.title">Intent</strong>
-              <p data-i18n="motion.card.prompt.body">Capture the work request.</p>
-            </article>
-            <article class="motion-card card-plan" data-depth data-x="26" data-y="-22" data-scale="0.08">
-              <span>02</span>
-              <strong data-i18n="motion.card.plan.title">Routing</strong>
-              <p data-i18n="motion.card.plan.body">Select skill, agent, and runtime.</p>
-            </article>
-            <article class="motion-card card-work" data-depth data-x="-20" data-y="24" data-scale="0.1">
-              <span>03</span>
-              <strong data-i18n="motion.card.work.title">Handoff</strong>
-              <p data-i18n="motion.card.work.body">Carry evidence forward.</p>
-            </article>
-            <article class="motion-card card-verify" data-depth data-x="30" data-y="18" data-scale="0.06">
-              <span>04</span>
-              <strong data-i18n="motion.card.verify.title">Gate</strong>
-              <p data-i18n="motion.card.verify.body">Verify before the next action.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="problem section-pad" data-section data-chapter="gap">
+      <!-- 02 / Trust Gap -->
+      <section id="gap" class="problem section-pad" data-section data-chapter="gap">
         <div class="section-label" data-i18n="gap.label">02 / Trust Gap</div>
         <div class="split-layout">
           <div class="sticky-copy">
@@ -165,6 +132,12 @@
               <i></i>
               <span data-i18n="gap.map.ship">production</span>
             </div>
+            <div class="source-row" aria-label="Evidence sources">
+              <span>Stack Overflow 2025 AI Survey</span>
+              <span>Coding-agent misalignment study</span>
+              <span>Longitudinal AI coding assistant study</span>
+            </div>
+            <a class="button secondary inline-cta" href="#guardrails" data-event="verification_view" data-i18n="gap.cta">View Verification</a>
           </div>
           <div class="statement-stack">
             <article class="statement" data-parallax data-speed="0.06">
@@ -183,10 +156,85 @@
         </div>
       </section>
 
+      <!-- 03 / Unified AI Runtime Pipeline -->
+      <section id="motion" class="parallax-story" data-section data-chapter="motion">
+        <div class="parallax-pin">
+          <div class="motion-backplane">
+            <img
+              src="./assets/davinci-pipeline-preview.png"
+              alt=""
+              aria-hidden="true"
+            />
+          </div>
+          <div class="motion-grid" aria-hidden="true"></div>
+          <div class="motion-rail rail-a" aria-hidden="true"></div>
+          <div class="motion-rail rail-b" aria-hidden="true"></div>
+
+          <div class="motion-copy">
+            <div class="section-label" data-i18n="motion.label">03 / Unified AI Runtime Pipeline</div>
+            <p class="eyebrow" data-i18n="motion.eyebrow">Routed by role, not rivalry</p>
+            <h2 data-i18n="motion.title">Different runtimes, one production line.</h2>
+            <p data-i18n="motion.body">
+              Claude Code, Codex CLI, Gemini CLI, and MCP/local tools move by role, context, and proof.
+            </p>
+          </div>
+
+          <div class="motion-stage" aria-label="Runtime pipeline stages">
+            <article class="motion-card card-prompt">
+              <span>01</span>
+              <strong data-i18n="motion.card.prompt.title">Intent</strong>
+              <p data-i18n="motion.card.prompt.body">Capture the work request.</p>
+            </article>
+            <article class="motion-card card-plan">
+              <span>02</span>
+              <strong data-i18n="motion.card.plan.title">Routing</strong>
+              <p data-i18n="motion.card.plan.body">Select skill, agent, and runtime.</p>
+            </article>
+            <article class="motion-card card-work">
+              <span>03</span>
+              <strong data-i18n="motion.card.work.title">Handoff</strong>
+              <p data-i18n="motion.card.work.body">Carry evidence forward.</p>
+            </article>
+            <article class="motion-card card-verify">
+              <span>04</span>
+              <strong data-i18n="motion.card.verify.title">Gate</strong>
+              <p data-i18n="motion.card.verify.body">Verify before the next action.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 / Harness Thesis -->
+      <section id="agents" class="agents section-pad" data-section data-chapter="agents">
+        <div class="section-label" data-i18n="agents.label">04 / Harness Thesis</div>
+        <div class="constellation">
+          <div class="constellation-copy">
+            <p class="eyebrow" data-i18n="agents.eyebrow">Execution structure around the model</p>
+            <h2 data-i18n="agents.title">Good models need a harness to become production software.</h2>
+            <p data-i18n="agents.body">
+              PM Agent, Reflexion, Handoff Chain, hooks, skills, and agent persona work in the same pipeline.
+            </p>
+          </div>
+          <div class="agent-map" aria-label="Agent specialist groups">
+            <div class="agent-lattice" aria-hidden="true"></div>
+            <span class="agent-node n1" data-i18n="agents.node.arch">PM Agent</span>
+            <span class="agent-node n2" data-i18n="agents.node.frontend">Skills</span>
+            <span class="agent-node n3" data-i18n="agents.node.backend">MCP Tools</span>
+            <span class="agent-node n4" data-i18n="agents.node.security">Hooks</span>
+            <span class="agent-node n5">Reflexion</span>
+            <span class="agent-node n6">Handoff Chain</span>
+            <span class="agent-node n7" data-i18n="agents.node.research">Evidence</span>
+            <span class="agent-node n8" data-i18n="agents.node.creative">Verification</span>
+            <span class="agent-core" data-i18n="agents.core">33+ Agents</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 / Multi-Routing da:framework -->
       <section id="system" class="system section-pad" data-section data-chapter="system">
-        <div class="section-label" data-i18n="system.label">03 / Routing System</div>
+        <div class="section-label" data-i18n="system.label">05 / Multi-Routing</div>
         <div class="section-heading">
-          <p class="eyebrow" data-i18n="system.eyebrow">Agent Harness, not a wrapper</p>
+          <p class="eyebrow" data-i18n="system.eyebrow">Runtime-aware routing</p>
           <h2 data-i18n="system.title">Requests become routes through skills, agents, runtimes, tools, and gates.</h2>
         </div>
         <div class="layer-stage" aria-label="Davinci routing layers">
@@ -216,73 +264,26 @@
         </div>
       </section>
 
-      <section id="workflow" class="workflow section-pad" data-section data-chapter="workflow">
-        <div class="section-label" data-i18n="workflow.label">04 / Production Workflow</div>
-        <div class="section-heading compact">
-          <p class="eyebrow" data-i18n="workflow.eyebrow">From idea to monitored release</p>
-          <h2 data-i18n="workflow.title">Every command leaves the next step ready.</h2>
-        </div>
-        <div class="workflow-shell">
-          <div class="workflow-spine" aria-hidden="true">
-            <span></span>
+      <!-- 06 / Verification-First Production -->
+      <section id="guardrails" class="guardrails section-pad" data-section data-chapter="guardrails">
+        <div class="section-label" data-i18n="guardrails.label">06 / Verification-First Production</div>
+        <div class="guardrail-shell">
+          <div>
+            <p class="eyebrow" data-i18n="guardrails.eyebrow">Speed needs gates</p>
+            <h2 data-i18n="guardrails.title">Davinci treats trust as workflow infrastructure.</h2>
           </div>
-        <div class="workflow-rail" aria-label="Davinci command workflow">
-          <article class="workflow-step active" data-step="01">
-            <span>/da:idea</span>
-            <h3 data-i18n="workflow.step.1.title">Intent</h3>
-            <p data-i18n="workflow.step.1.body">Clarify the product goal, constraints, and evidence needs.</p>
-          </article>
-          <article class="workflow-step" data-step="02">
-            <span>/da:plan</span>
-            <h3 data-i18n="workflow.step.2.title">Plan</h3>
-            <p data-i18n="workflow.step.2.body">Split scope into an executable route with verification criteria.</p>
-          </article>
-          <article class="workflow-step" data-step="03">
-            <span>/da:work</span>
-            <h3 data-i18n="workflow.step.3.title">Execute</h3>
-            <p data-i18n="workflow.step.3.body">Run the selected skill, agent, runtime, MCP, and local tools.</p>
-          </article>
-          <article class="workflow-step" data-step="04">
-            <span>/da:verify</span>
-            <h3 data-i18n="workflow.step.4.title">Verify</h3>
-            <p data-i18n="workflow.step.4.body">Create evidence before the output moves to handoff.</p>
-          </article>
-          <article class="workflow-step" data-step="05">
-            <span>/da:deploy</span>
-            <h3 data-i18n="workflow.step.5.title">Operate</h3>
-            <p data-i18n="workflow.step.5.body">Connect worktree, PR, Jira, Slack, deploy, and monitor flow.</p>
-          </article>
-        </div>
+          <ul class="guardrail-list">
+            <li><span>01</span><strong data-i18n="guardrails.item.1">3-Tier Verification</strong></li>
+            <li><span>02</span><strong data-i18n="guardrails.item.2">20+ Hook Guardrails</strong></li>
+            <li><span>03</span><strong data-i18n="guardrails.item.3">Evidence Handoff</strong></li>
+            <li><span>04</span><strong data-i18n="guardrails.item.4">Reflexion Loop</strong></li>
+          </ul>
         </div>
       </section>
 
-      <section id="agents" class="agents section-pad" data-section data-chapter="agents">
-        <div class="section-label" data-i18n="agents.label">05 / Agent Harness</div>
-        <div class="constellation">
-          <div class="constellation-copy">
-            <p class="eyebrow" data-i18n="agents.eyebrow">Execution structure around the model</p>
-            <h2 data-i18n="agents.title">Good models need a harness to become production software.</h2>
-            <p data-i18n="agents.body">
-              PM Agent, Reflexion, Handoff Chain, hooks, skills, and agent persona work in the same pipeline.
-            </p>
-          </div>
-          <div class="agent-map" aria-label="Agent specialist groups">
-            <div class="agent-lattice" aria-hidden="true"></div>
-            <span class="agent-node n1" data-i18n="agents.node.arch">PM Agent</span>
-            <span class="agent-node n2" data-i18n="agents.node.frontend">Skills</span>
-            <span class="agent-node n3" data-i18n="agents.node.backend">MCP Tools</span>
-            <span class="agent-node n4" data-i18n="agents.node.security">Hooks</span>
-            <span class="agent-node n5">Reflexion</span>
-            <span class="agent-node n6">Handoff Chain</span>
-            <span class="agent-node n7" data-i18n="agents.node.research">Evidence</span>
-            <span class="agent-node n8" data-i18n="agents.node.creative">Verification</span>
-            <span class="agent-core" data-i18n="agents.core">33+ Agents</span>
-          </div>
-        </div>
-      </section>
-
+      <!-- 07 / Native Desktop Studio -->
       <section id="templates" class="templates section-pad" data-section data-chapter="templates">
-        <div class="section-label" data-i18n="templates.label">06 / Native Studio</div>
+        <div class="section-label" data-i18n="templates.label">07 / Native Desktop Studio</div>
         <div class="section-heading">
           <p class="eyebrow" data-i18n="templates.eyebrow">Terminal power, visible surface</p>
           <h2 data-i18n="templates.title">Sessions, evidence, design intent, and operations stay inspectable.</h2>
@@ -299,49 +300,143 @@
         </div>
       </section>
 
-      <section class="guardrails section-pad" data-section>
-        <div class="section-label" data-i18n="guardrails.label">07 / Verification-First Production</div>
-        <div class="guardrail-shell">
-          <div>
-            <p class="eyebrow" data-i18n="guardrails.eyebrow">Speed needs gates</p>
-            <h2 data-i18n="guardrails.title">Davinci treats trust as workflow infrastructure.</h2>
-          </div>
-          <ul class="guardrail-list">
-            <li><span>01</span><strong data-i18n="guardrails.item.1">3-Tier Verification</strong></li>
-            <li><span>02</span><strong data-i18n="guardrails.item.2">20+ Hook Guardrails</strong></li>
-            <li><span>03</span><strong data-i18n="guardrails.item.3">Evidence Handoff</strong></li>
-            <li><span>04</span><strong data-i18n="guardrails.item.4">Reflexion Loop</strong></li>
-          </ul>
+      <!-- 08 / Design-to-Code -->
+      <section id="design-code" class="design-code section-pad" data-section data-chapter="design">
+        <div class="section-label" data-i18n="design.label">08 / Design-to-Code</div>
+        <div class="section-heading compact">
+          <p class="eyebrow" data-i18n="design.eyebrow">Create Studio as pipeline input</p>
+          <h2 data-i18n="design.title">Design intent stays in the pipeline.</h2>
+          <p data-i18n="design.body">
+            Idea, UX, code, and visual QA move as one work unit.
+          </p>
+        </div>
+        <div class="design-flow" aria-label="Design-to-code production flow" data-event="create_studio_view">
+          <article>
+            <span>01</span>
+            <strong data-i18n="design.step.1.title">Design Intent</strong>
+            <p data-i18n="design.step.1.body">Intent preserved.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <strong data-i18n="design.step.2.title">Create Studio</strong>
+            <p data-i18n="design.step.2.body">Creative input.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <strong data-i18n="design.step.3.title">UX Validation</strong>
+            <p data-i18n="design.step.3.body">UX checked.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <strong data-i18n="design.step.4.title">Visual QA</strong>
+            <p data-i18n="design.step.4.body">Visual proof.</p>
+          </article>
         </div>
       </section>
 
-      <section id="operations" class="finale section-viewport" data-section>
+      <!-- 09 / Workflow Operations -->
+      <section id="operations" class="operations-section section-pad" data-section data-chapter="operations">
+        <div class="section-label" data-i18n="operations.label">09 / Workflow Operations</div>
+        <div class="section-heading compact">
+          <p class="eyebrow" data-i18n="operations.eyebrow">AI output becomes team workflow</p>
+          <h2 data-i18n="operations.title">Generated code becomes team workflow.</h2>
+          <p data-i18n="operations.body">
+            Git, PR, Jira, Slack, deploy, and monitor stay connected.
+          </p>
+        </div>
+        <div class="ops-rail" aria-label="Workflow Operations lane" data-event="workflow_operations_view">
+          <span>AI Output</span>
+          <span>Git Worktree</span>
+          <span>Branch / History</span>
+          <span>PR Review</span>
+          <span>Jira Issue</span>
+          <span>Slack Notification</span>
+          <span>Deploy / Monitor</span>
+        </div>
+        <div class="ops-proof-grid" aria-label="Workflow operations proof">
+          <article data-event="git_worktree_expand"><span>Git Worktree</span><p data-i18n="operations.git">Isolated work state.</p></article>
+          <article data-event="pr_review_flow_open"><span>PR Review</span><p data-i18n="operations.pr">Review-ready handoff.</p></article>
+          <article data-event="jira_slack_bridge_open"><span>Jira</span><p data-i18n="operations.jira">Issue-linked work.</p></article>
+          <article data-event="jira_slack_bridge_open"><span>Slack</span><p data-i18n="operations.slack">Team-visible signals.</p></article>
+        </div>
+      </section>
+
+      <!-- 10 / Comparison -->
+      <section id="comparison" class="comparison section-pad" data-section data-chapter="comparison">
+        <div class="section-label" data-i18n="comparison.label">10 / Comparison</div>
+        <div class="section-heading compact">
+          <p class="eyebrow" data-i18n="comparison.eyebrow">Category, not tool count</p>
+          <h2 data-i18n="comparison.title">The difference is orchestration.</h2>
+          <p data-i18n="comparison.body">
+            Davinci connects existing runtimes into one verified pipeline.
+          </p>
+        </div>
+        <div class="comparison-matrix" aria-label="Assistant versus orchestration comparison" data-event="comparison_axis_toggle">
+          <article><span>Single assistant</span><strong>Multi-runtime orchestration</strong></article>
+          <article><span>Code generation</span><strong>Production pipeline</strong></article>
+          <article><span>Manual supervision</span><strong>Structured verification</strong></article>
+          <article><span>Editor surface</span><strong>Native production studio</strong></article>
+          <article><span>Isolated output</span><strong>Evidence Handoff</strong></article>
+        </div>
+      </section>
+
+      <!-- 11 / Proof / Inventory -->
+      <section id="proof" class="proof section-pad" data-section data-chapter="proof">
+        <div class="section-label" data-i18n="proof.label">11 / Proof / Inventory</div>
+        <div class="section-heading compact">
+          <p class="eyebrow" data-i18n="proof.eyebrow">Already inside the product</p>
+          <h2 data-i18n="proof.title">Proof lives in the harness.</h2>
+          <p data-i18n="proof.body">
+            Skills, agents, hooks, and verification are already part of the product.
+          </p>
+        </div>
+        <div class="proof-grid" aria-label="Davinci proof inventory">
+          <article><strong>60+</strong><span>workflow skills</span><p data-i18n="proof.skills">Intent to workflow.</p></article>
+          <article><strong>33+</strong><span>expert agents</span><p data-i18n="proof.agents">Role-based execution.</p></article>
+          <article><strong>20+</strong><span>hook guardrails</span><p data-i18n="proof.hooks">Action boundaries.</p></article>
+          <article><strong>12K+</strong><span>core harness LOC</span><p data-i18n="proof.loc">Runtime code.</p></article>
+          <article><strong>3</strong><span>verification tiers</span><p data-i18n="proof.tiers">Gate before handoff.</p></article>
+          <article><strong>Native</strong><span>desktop studio</span><p data-i18n="proof.studio">Inspectable state.</p></article>
+        </div>
+        <a class="button secondary inline-cta" href="#final-cta" data-event="summary_view" data-i18n="proof.cta">View Summary</a>
+      </section>
+
+      <!-- 12 / CTA -->
+      <section id="final-cta" class="finale section-viewport" data-section data-chapter="cta">
         <div class="final-loop" aria-hidden="true">
           <span></span>
           <span></span>
           <span></span>
         </div>
         <div class="final-copy">
-          <p class="eyebrow" data-i18n="final.eyebrow">Workflow Operations</p>
-          <h2 data-i18n="final.title">AI output becomes team workflow.</h2>
+          <p class="eyebrow" data-i18n="final.eyebrow">Human intent. AI execution. System-level verification.</p>
+          <h2 data-i18n="final.title">One verified production pipeline.</h2>
           <p data-i18n="final.body">
-            Git Worktree, PR Review, Jira, Slack, deploy, and monitor all stay connected to the same production surface.
+            Davinci turns AI execution into routed, evidenced, team-ready software work.
           </p>
-          <div class="ops-rail" aria-label="Workflow Operations lane" data-event="workflow_operations_view">
-            <span>AI Output</span>
-            <span>Git Worktree</span>
-            <span>PR Review</span>
-            <span>Jira Issue</span>
-            <span>Slack Notification</span>
-            <span>Deploy / Monitor</span>
-          </div>
           <div class="final-actions" aria-label="Final actions">
-            <a class="button primary" href="#workflow" data-event="workflow_operations_view" data-i18n="final.cta.primary">See Workflow Operations</a>
-            <a class="button secondary" href="#templates" data-event="desktop_download_click" data-i18n="final.cta.secondary">Download Davinci</a>
+            <a class="button primary" href="#motion" data-event="hero_cta_click" data-i18n="final.cta.pipeline">See the Pipeline</a>
+            <a class="button secondary" href="#proof" data-event="proof_view" data-i18n="final.cta.proof">View Proof</a>
           </div>
         </div>
       </section>
     </main>
+
+    <footer class="site-footer">
+      <div>
+        <a class="brand-mark" href="#top" aria-label="Davinci home">
+          <span class="brand-sigil"><img src="./assets/davinci-symbol.png" alt="" /></span>
+          <span>Davinci</span>
+        </a>
+        <p data-i18n="footer.line">AI Runtime Orchestration Platform for verified software production.</p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <a href="#motion" data-i18n="footer.pipeline">Pipeline</a>
+        <a href="#agents" data-i18n="footer.harness">Harness</a>
+        <a href="#operations" data-i18n="footer.operations">Operations</a>
+        <a href="#proof" data-i18n="footer.proof">Proof</a>
+      </nav>
+    </footer>
 
     <script src="./script.js"></script>
   </body>
