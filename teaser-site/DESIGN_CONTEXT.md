@@ -2,14 +2,12 @@
 
 ## Source Of Truth
 
-Use `../moodboard/` as the design tone and mood source before any design work. From the project root, run `./scripts/check-moodboard.sh` before changing any design-related file.
+Use `docs/moodboard/` as the design tone and mood source before any design work. From the project root, run `./scripts/check-moodboard.sh` before changing any design-related file.
 
 Required preflight for future design changes:
 
 ```sh
-find ../moodboard -maxdepth 2 -type f -print0 | xargs -0 stat -f '%Sm %N' -t '%Y-%m-%d %H:%M:%S' | sort
-find ../moodboard -maxdepth 2 -type f -print0 | xargs -0 file | sort
-find ../moodboard -maxdepth 2 -type f ! -name '.DS_Store' -print0 | sort -z | xargs -0 shasum -a 256
+./scripts/check-moodboard.sh
 ```
 
 If any moodboard file changed since the last design pass, inspect the changed files before editing UI.

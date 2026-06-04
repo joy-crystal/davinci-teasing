@@ -1,6 +1,6 @@
 # Project Design Instructions
 
-Before any design-related work, inspect `moodboard/` first.
+Before any design-related work, inspect `docs/moodboard/` first.
 
 Required preflight:
 
@@ -19,4 +19,3 @@ Current design direction:
 - Beauty plus utility, human-centered engineering
 
 UI copy remains English unless the user explicitly asks otherwise.
-

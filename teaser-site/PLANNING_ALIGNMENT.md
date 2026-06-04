@@ -13,7 +13,7 @@
 | `davinci-official-website/03-homepage-copy.md` | Use copy deck themes: Unified AI Runtime Pipeline, Agent Harness, Runtime-Aware Routing, Verification-First, Native Studio, Design-to-Code, Workflow Operations. | Section copy is rewritten around those themes instead of the previous generic AI development engine message. |
 | `davinci-official-website/04-content-spec.md` | Include content proof, CTA/event names, and avoid stale numbers or unsupported claims. | CTAs include `data-event` hooks, proof chips use safe public counts, and stale counts are removed from `teaser-site`. |
 | `davinci-official-website/05-wireframe-spec.md` | First viewport must show category, brand, CTA, pipeline preview; operations must be a workflow lane rather than logo badges. | Hero keeps brand/category/CTA/pipeline preview together; finale adds an operations lane from AI Output to Deploy / Monitor. |
-| `moodboard/keyword.md`, `mood1.png`, `mood2.png`, palette images | Neo-renaissance, gold-black premium futurism, manuscript/technical sketch, sacred geometry, orbital diagrams, beauty plus utility. | Existing dark gold/black visual system, orbit geometry, serif display, mono technical labels, and restrained premium cards are preserved. |
+| `docs/moodboard/keyword.md`, `mood1.png`, `mood2.png`, palette images | Neo-renaissance, gold-black premium futurism, manuscript/technical sketch, sacred geometry, orbital diagrams, beauty plus utility. | Existing dark gold/black visual system, orbit geometry, serif display, mono technical labels, and restrained premium cards are preserved. |
 
 ## Implementation Map
 
