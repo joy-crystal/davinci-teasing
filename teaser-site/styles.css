@@ -389,8 +389,8 @@ h1 {
 h2 {
   margin-bottom: 0;
   max-width: min(900px, 100%);
-  font-size: clamp(36px, 5.4vw, 72px);
-  line-height: 1.02;
+  font-size: clamp(26px, 3.2vw, 40px);
+  line-height: 1.12;
   letter-spacing: 0;
   text-wrap: balance;
 }
@@ -772,7 +772,7 @@ p {
 .motion-copy h2 {
   max-width: 900px;
   margin-inline: auto;
-  font-size: clamp(38px, 5.4vw, 72px);
+  font-size: clamp(28px, 3.6vw, 46px);
   line-height: 1.02;
   text-wrap: balance;
 }
@@ -879,8 +879,8 @@ p {
 .sticky-copy h2,
 .constellation-copy h2,
 .guardrail-shell h2 {
-  font-size: clamp(34px, 4.6vw, 58px);
-  line-height: 1.06;
+  font-size: clamp(26px, 3vw, 40px);
+  line-height: 1.12;
 }
 
 .fracture-map {
@@ -1658,24 +1658,66 @@ p {
 
 [data-section] {
   opacity: 0.001;
-  transform: translateY(24px);
-  transition: opacity 700ms ease, transform 700ms ease;
+  transition: opacity 220ms ease;
 }
 
 [data-section].is-visible {
   opacity: 1;
-  transform: translateY(0);
 }
 
 .parallax-story[data-section] {
   opacity: 1;
-  transform: none;
   transition: none;
 }
 
 .finale[data-section] {
   opacity: 1;
-  transform: none;
+}
+
+/* Per-component entrance: each section's parts fade-rise in sequence, and
+   prominent text types in softly. Driven by [data-section].is-visible, which
+   is set as each section scrolls into view. */
+@media (prefers-reduced-motion: no-preference) {
+  /* Transition lives on the .is-visible (revealed) state, not the base, so
+     entering a section animates the staggered reveal while leaving snaps back
+     to hidden instantly — the entrance replays cleanly on every arrival. */
+  [data-section] [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  [data-section].is-visible [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.72s cubic-bezier(0.22, 0.61, 0.36, 1),
+      transform 0.72s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition-delay: calc(var(--reveal-order, 0) * 85ms);
+  }
+
+  /* Natural line wrapping + balanced lines: chars flow inline (opacity + blur
+     only, no transform that would force inline-block and break wrapping). */
+  [data-typed] {
+    text-wrap: balance;
+    word-break: keep-all;
+  }
+
+  [data-typed] .type-char {
+    display: inline;
+    opacity: 0;
+    filter: blur(7px);
+  }
+
+  /* End at filter:none (not blur(0)) so no compositing layer lingers at rest —
+     keeps the serif text rendering crisp instead of heavy/blurred. */
+  [data-section].is-visible [data-typed] .type-char {
+    opacity: 1;
+    filter: none;
+    transition:
+      opacity 0.5s ease,
+      filter 0.5s ease;
+    transition-delay: calc(var(--type-base, 0ms) + var(--char, 0) * 24ms);
+  }
 }
 
 [data-section] [data-stagger-item] {
@@ -1897,8 +1939,8 @@ p {
   }
 
   .motion-copy h2 {
-    font-size: clamp(38px, 12vw, 48px);
-    line-height: 0.96;
+    font-size: clamp(26px, 8vw, 38px);
+    line-height: 1.04;
   }
 
   .motion-copy p:not(.eyebrow) {

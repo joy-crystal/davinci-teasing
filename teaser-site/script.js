@@ -179,49 +179,49 @@ const copy = {
     "console.plan": "route mapped",
     "console.work": "evidence live",
     "hero.eyebrow": "AI Runtime Orchestration Platform",
-    "hero.line": "여러 AI runtime의 강점을 하나의 production line으로 연결합니다.",
+    "hero.line": "여러 AI Runtime의 강점을 하나의 Production Line으로 연결합니다.",
     "hero.cta.primary": "See the Pipeline",
     "hero.cta.secondary": "View Studio",
     "motion.label": "03 / Unified AI Runtime Pipeline",
     "motion.eyebrow": "Routed by role, not rivalry",
-    "motion.title": "서로 다른 runtime을 하나의 production line으로.",
-    "motion.body": "Claude Code, Codex CLI, Gemini CLI, MCP/local tools가 역할, 맥락, evidence 기준으로 이어집니다.",
+    "motion.title": "서로 다른 Runtime을 하나의 Production Line으로.",
+    "motion.body": "Claude Code, Codex CLI, Gemini CLI, MCP/Local Tools가 역할, 맥락, Evidence 기준으로 이어집니다.",
     "motion.card.prompt.title": "Intent",
     "motion.card.prompt.body": "작업 요청을 포착합니다.",
     "motion.card.plan.title": "Routing",
-    "motion.card.plan.body": "skill, agent, runtime을 선택합니다.",
+    "motion.card.plan.body": "Skill, Agent, Runtime을 선택합니다.",
     "motion.card.work.title": "Handoff",
-    "motion.card.work.body": "evidence를 다음 단계로 넘깁니다.",
+    "motion.card.work.body": "Evidence를 다음 단계로 넘깁니다.",
     "motion.card.verify.title": "Gate",
-    "motion.card.verify.body": "다음 action 전 검증합니다.",
+    "motion.card.verify.body": "다음 Action 전 검증합니다.",
     "gap.label": "02 / Trust Gap",
     "gap.eyebrow": "Code generation is not production",
-    "gap.title": "AI는 빨라졌지만, production은 여전히 proof가 필요합니다.",
+    "gap.title": "AI는 빨라졌지만, Production은 여전히 Proof가 필요합니다.",
     "gap.map.idea": "intent",
     "gap.map.code": "output",
     "gap.map.ship": "production",
     "gap.statement.1.title": "Runtime sprawl",
-    "gap.statement.1.body": "Claude, Codex, Gemini, local tools는 서로 다른 영역을 해결합니다.",
+    "gap.statement.1.body": "Claude, Codex, Gemini, Local Tools는 서로 다른 영역을 해결합니다.",
     "gap.statement.2.title": "Evidence loss",
-    "gap.statement.2.body": "context, decision, check가 이어지지 않으면 긴 작업은 끊깁니다.",
+    "gap.statement.2.body": "Context, Decision, Check가 이어지지 않으면 긴 작업은 끊깁니다.",
     "gap.statement.3.title": "Operational gap",
-    "gap.statement.3.body": "팀에는 worktree, PR review, Jira, Slack, deploy, monitor가 필요합니다.",
+    "gap.statement.3.body": "팀에는 Worktree, PR Review, Jira, Slack, Deploy, Monitor가 필요합니다.",
     "gap.cta": "View Verification",
     "system.label": "05 / Multi-Routing",
     "system.eyebrow": "Runtime-aware routing",
-    "system.title": "요청은 skill, agent, runtime, tool, gate를 지나는 route가 됩니다.",
-    "system.layer.app": "intent를 적절한 runtime capability에 연결합니다.",
-    "system.layer.server": "workflow skill과 agent persona가 실행 구조를 만듭니다.",
-    "system.layer.engine": "output은 context, decision, check를 함께 넘깁니다.",
-    "system.layer.plugin": "3-Tier verification이 다음 이동 가능 여부를 판단합니다.",
+    "system.title": "요청은 Skill, Agent, Runtime, Tool, Gate를 지나는 Route가 됩니다.",
+    "system.layer.app": "Intent를 적절한 Runtime Capability에 연결합니다.",
+    "system.layer.server": "Workflow Skill과 Agent Persona가 실행 구조를 만듭니다.",
+    "system.layer.engine": "Output은 Context, Decision, Check를 함께 넘깁니다.",
+    "system.layer.plugin": "3-Tier Verification이 다음 이동 가능 여부를 판단합니다.",
     "metric.skills": "Workflow skills",
     "metric.agents": "Expert agents",
     "metric.templates": "Hook guardrails",
     "metric.hooks": "Verification tiers",
     "agents.label": "04 / Harness Thesis",
     "agents.eyebrow": "Execution structure around the model",
-    "agents.title": "좋은 모델도 production software가 되려면 harness가 필요합니다.",
-    "agents.body": "PM Agent, Reflexion, Handoff Chain, hooks, skills, agent persona가 같은 pipeline에서 작동합니다.",
+    "agents.title": "좋은 모델도 Production Software가 되려면 Harness가 필요합니다.",
+    "agents.body": "PM Agent, Reflexion, Handoff Chain, Hooks, Skills, Agent Persona가 같은 Pipeline에서 작동합니다.",
     "agents.node.arch": "PM Agent",
     "agents.node.frontend": "Skills",
     "agents.node.backend": "MCP Tools",
@@ -231,7 +231,7 @@ const copy = {
     "agents.core": "33+ Agents",
     "templates.label": "07 / Native Desktop Studio",
     "templates.eyebrow": "Terminal power, visible surface",
-    "templates.title": "session, evidence, design intent, operations를 추적 가능하게 보여줍니다.",
+    "templates.title": "Session, Evidence, Design Intent, Operations를 추적 가능하게 보여줍니다.",
     "templates.chat": "Multi-tab AI runtime sessions.",
     "templates.mcp": "Role, skill, handoff structure.",
     "templates.voice": "Execution history and decisions.",
@@ -242,8 +242,8 @@ const copy = {
     "templates.design": "Production routines after code.",
     "design.label": "08 / Design-to-Code",
     "design.eyebrow": "Create Studio as pipeline input",
-    "design.title": "Design intent가 pipeline에 남습니다.",
-    "design.body": "Idea, UX, code, visual QA가 하나의 work unit으로 이동합니다.",
+    "design.title": "Design Intent가 Pipeline에 남습니다.",
+    "design.body": "Idea, UX, Code, Visual QA가 하나의 Work Unit으로 이동합니다.",
     "design.step.1.title": "Design Intent",
     "design.step.1.body": "Intent preserved.",
     "design.step.2.title": "Create Studio",
@@ -254,27 +254,27 @@ const copy = {
     "design.step.4.body": "Visual proof.",
     "guardrails.label": "06 / Verification-First Production",
     "guardrails.eyebrow": "Speed needs gates",
-    "guardrails.title": "Davinci는 trust를 workflow infrastructure로 다룹니다.",
+    "guardrails.title": "Davinci는 Trust를 Workflow Infrastructure로 다룹니다.",
     "guardrails.item.1": "3-Tier Verification",
     "guardrails.item.2": "20+ Hook Guardrails",
     "guardrails.item.3": "Evidence Handoff",
     "guardrails.item.4": "Reflexion Loop",
     "operations.label": "09 / Workflow Operations",
     "operations.eyebrow": "AI output becomes team workflow",
-    "operations.title": "Generated code는 team workflow가 됩니다.",
-    "operations.body": "Git, PR, Jira, Slack, deploy, monitor가 연결됩니다.",
+    "operations.title": "Generated Code는 Team Workflow가 됩니다.",
+    "operations.body": "Git, PR, Jira, Slack, Deploy, Monitor가 연결됩니다.",
     "operations.git": "Isolated work state.",
     "operations.pr": "Review-ready handoff.",
     "operations.jira": "Issue-linked work.",
     "operations.slack": "Team-visible signals.",
     "comparison.label": "10 / Comparison",
     "comparison.eyebrow": "Category, not tool count",
-    "comparison.title": "차이는 orchestration입니다.",
-    "comparison.body": "Davinci는 기존 runtime을 하나의 verified pipeline으로 연결합니다.",
+    "comparison.title": "차이는 Orchestration입니다.",
+    "comparison.body": "Davinci는 기존 Runtime을 하나의 Verified Pipeline으로 연결합니다.",
     "proof.label": "11 / Proof / Inventory",
     "proof.eyebrow": "Already inside the product",
-    "proof.title": "Proof는 harness 안에 있습니다.",
-    "proof.body": "Skills, agents, hooks, verification이 이미 product 안에 있습니다.",
+    "proof.title": "Proof는 Harness 안에 있습니다.",
+    "proof.body": "Skills, Agents, Hooks, Verification이 이미 Product 안에 있습니다.",
     "proof.skills": "Intent to workflow.",
     "proof.agents": "Role-based execution.",
     "proof.hooks": "Action boundaries.",
@@ -283,11 +283,11 @@ const copy = {
     "proof.studio": "Inspectable state.",
     "proof.cta": "View Summary",
     "final.eyebrow": "Human intent. AI execution. System-level verification.",
-    "final.title": "One verified production pipeline.",
-    "final.body": "Davinci는 AI execution을 routed, evidenced, team-ready software work로 바꿉니다.",
+    "final.title": "하나의 검증된 Production Pipeline.",
+    "final.body": "Davinci는 AI Execution을 Routed, Evidenced, Team-ready Software Work로 바꿉니다.",
     "final.cta.pipeline": "See the Pipeline",
     "final.cta.proof": "View Proof",
-    "footer.line": "Verified software production을 위한 AI Runtime Orchestration Platform.",
+    "footer.line": "Verified Software Production을 위한 AI Runtime Orchestration Platform.",
     "footer.pipeline": "Pipeline",
     "footer.harness": "Harness",
     "footer.operations": "Operations",
@@ -742,20 +742,75 @@ try {
 } catch {
   savedLanguage = "en";
 }
+const REVEAL_STEP_MS = 85;
+const typeSelector =
+  ".section-label, .eyebrow, h1, h2, .hero-line, .section-heading > p:not(.eyebrow), .motion-copy > p:not(.eyebrow), .constellation-copy > p:not(.eyebrow), .final-copy > p:not(.eyebrow)";
+const blockSelector =
+  ".hero-actions, .hero-proof, .command-ribbon, .fracture-map, .source-row, .inline-cta, .statement, .layer, .metric-band > div, .agent-map, .template-grid article, .design-flow article, .guardrail-list li, .ops-rail, .ops-proof-grid article, .comparison-matrix article, .proof-grid article, .motion-card, .final-actions";
+
+function typeOutElement(element, baseOrder) {
+  const text = element.textContent;
+  if (!text || !text.trim()) return;
+
+  element.dataset.typed = "";
+  element.setAttribute("aria-label", text.trim());
+  element.style.setProperty("--type-base", `${baseOrder * REVEAL_STEP_MS}ms`);
+  element.textContent = "";
+
+  let charIndex = 0;
+  Array.from(text).forEach((glyph) => {
+    if (/\s/.test(glyph)) {
+      // Real whitespace text node keeps a normal break opportunity, so the line
+      // wraps and balances like ordinary text. Inline char spans below do not
+      // add break opportunities, so English words never split mid-word.
+      element.append(document.createTextNode(glyph));
+      return;
+    }
+    const charSpan = document.createElement("span");
+    charSpan.className = "type-char";
+    charSpan.setAttribute("aria-hidden", "true");
+    charSpan.style.setProperty("--char", String(charIndex));
+    charSpan.textContent = glyph;
+    element.append(charSpan);
+    charIndex += 1;
+  });
+}
+
+// Assign each section a staggered entrance: prominent text types in softly,
+// supporting components fade-rise in sequence. Re-run after a language switch
+// because applyLanguage() rewrites the typed text nodes.
+function setupSectionChoreography() {
+  if (reduceMotion) return;
+
+  sections.forEach((section) => {
+    const units = Array.from(section.querySelectorAll(`${typeSelector}, ${blockSelector}`));
+    units.forEach((element, order) => {
+      if (element.matches(typeSelector)) {
+        typeOutElement(element, order);
+      } else {
+        element.dataset.reveal = "";
+        element.style.setProperty("--reveal-order", String(order));
+      }
+    });
+  });
+}
+
 applyLanguage(savedLanguage);
+setupSectionChoreography();
 
 languageButtons.forEach((button) => {
   button.addEventListener("click", () => {
     applyLanguage(button.dataset.langOption);
+    setupSectionChoreography();
   });
 });
 
 const sectionObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-      }
+      // Toggle (not just add) so each section's entrance animation replays
+      // every time it is arrived at — scrolling down or back up.
+      entry.target.classList.toggle("is-visible", entry.isIntersecting);
     });
   },
   { threshold: 0.16 }
