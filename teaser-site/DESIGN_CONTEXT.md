@@ -45,8 +45,11 @@ Current hashes:
 
 - Default locale is English (`lang="en"`). UI copy stays English unless the user explicitly asks otherwise.
 - The product name `Davinci` stays in English in every locale.
-- Latin display remains a Renaissance serif stack (`Iowan Old Style`, `Palatino Linotype`, `Georgia`) for the fixed `Davinci` wordmark.
-- Korean fallback remains available for optional localization only: `Gowun Batang` with `Noto Serif KR`.
+- Typography follows a role hierarchy: display serif for brand, major ideas, hero copy, action buttons, and metric numbers; Gothic for body/general UI copy; mono for labels, commands, metric labels, and console text.
+- Latin display remains a Renaissance serif stack (`Iowan Old Style`, `Palatino Linotype`, `Georgia`) for the fixed `Davinci` wordmark and English display headings.
+- Korean display uses the same Latin display stack first, then `Gowun Batang` and `Noto Serif KR` for Hangul fallback.
+- Body and general UI copy use the Gothic stack with `Pretendard` loaded from CDN; Korean fallbacks are `Apple SD Gothic Neo` and `Malgun Gothic`.
+- Label and eyebrow text keeps the same mono uppercase treatment in every locale; do not sentence-case English labels just because the page is in Korean mode.
 - Copy should stay focused: one main idea per section, short headings, and one-sentence supporting text. Lead with "AI Runtime Orchestration Platform" and explain how multiple AI runtimes become one verified software production pipeline.
 
 ## Official Website Planning Update

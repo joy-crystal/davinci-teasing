@@ -595,7 +595,7 @@ Human intent. AI execution. System-level verification.
 
 | 용도 | 권장 |
 |------|------|
-| Korean body | Pretendard 또는 system Korean sans |
+| Korean body | Pretendard |
 | Technical label | Geist Mono 또는 IBM Plex Mono 계열 |
 | Hero headline | 두 줄 이하, 굵기 중심, letter spacing 0 |
 | Section heading | 24-36px 범위, landing hero급 과장 금지 |
