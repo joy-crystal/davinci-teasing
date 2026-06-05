@@ -1,8 +1,5 @@
 const progressBar = document.querySelector(".scroll-progress span");
 const nav = document.querySelector(".site-nav");
-const parallaxItems = Array.from(document.querySelectorAll("[data-parallax]"));
-const parallaxScenes = Array.from(document.querySelectorAll("[data-parallax-scene]"));
-const depthItems = Array.from(document.querySelectorAll("[data-depth]"));
 const sections = Array.from(document.querySelectorAll("[data-section]"));
 const chapterLinks = Array.from(document.querySelectorAll("[data-chapter-link]"));
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -571,54 +568,21 @@ function updateScrollEffects() {
   nav?.classList.toggle("is-scrolled", scrollTop > 24);
   updateActiveChapter();
 
-  if (!reduceMotion) {
-    const viewport = window.innerHeight;
-
-    parallaxItems.forEach((item) => {
-      const rect = item.getBoundingClientRect();
-      const speed = Number(item.dataset.speed || 0);
-      const centerOffset = rect.top + rect.height / 2 - viewport / 2;
-      const travel = centerOffset * speed;
-      item.style.transform = `translate3d(0, ${travel.toFixed(2)}px, 0)`;
-    });
-
-    parallaxScenes.forEach((scene) => {
-      const maxTravel = Math.max(1, scene.offsetHeight - viewport);
-      const sceneTop = scene.offsetTop;
-      const rawProgress = (scrollTop - sceneTop) / maxTravel;
-      const sceneProgress = Math.min(1, Math.max(0, rawProgress));
-      scene.style.setProperty("--scene-progress", sceneProgress.toFixed(4));
-      scene.classList.toggle("is-pinned", rawProgress >= 0 && rawProgress <= 1);
-      scene.classList.toggle("is-after", rawProgress > 1);
-    });
-
-    depthItems.forEach((item) => {
-      const scene = item.closest("[data-parallax-scene]");
-      const sceneProgress = Number(scene?.style.getPropertyValue("--scene-progress") || 0);
-      const compact = window.innerWidth < 700;
-      const xDepthFactor = compact ? 0.16 : window.innerWidth < 980 ? 0.66 : 1;
-      const yDepthFactor = compact ? 0.18 : window.innerWidth < 980 ? 0.66 : 1;
-      const scaleDepthFactor = compact ? 0.3 : window.innerWidth < 980 ? 0.66 : 1;
-      // Motion cards converge: start spread out and gather into the base row as the scene scrolls.
-      const motionPhase = item.classList.contains("motion-card") ? 1 - sceneProgress : sceneProgress;
-      const x = Number(item.dataset.x || 0) * motionPhase * xDepthFactor;
-      const y = Number(item.dataset.y || 0) * motionPhase * yDepthFactor;
-      const scale = 1 + Number(item.dataset.scale || 0) * motionPhase * scaleDepthFactor;
-      const lift = Math.sin(sceneProgress * Math.PI) * Number(item.dataset.float || 0);
-      item.style.transform = `translate3d(${x.toFixed(2)}vw, ${(y + lift).toFixed(2)}vh, 0) scale(${scale.toFixed(3)})`;
-    });
-  }
-
   requestAnimationFrame(updateScrollEffects);
 }
 
 requestAnimationFrame(updateScrollEffects);
 
 // Section-unit wheel paging for desktop mouse/trackpad (PPT slide style).
-// Keep the lock until the wheel stream goes idle so trackpad momentum cannot
-// trigger extra section jumps after the first gesture.
+// Treat wheel input like a slide-deck command: one intentional wheel gesture
+// pages once, while same-stream momentum tails are ignored.
 const finePointer = window.matchMedia("(pointer: fine)");
 const pagerEnabled = () => !reduceMotion && window.innerWidth >= 700 && finePointer.matches;
+const wheelDeltaMode = {
+  pixel: 0,
+  line: 1,
+  page: 2,
+};
 
 function buildSnapPoints() {
   const viewport = window.innerHeight || 1;
@@ -682,50 +646,85 @@ function pageTo(targetY, onDone) {
   setTimeout(finalize, duration + 80);
 }
 
-const wheelGestureIdleMs = 220;
-let wheelGestureLocked = false;
-let wheelIdleTimer = 0;
-let lastWheelAt = 0;
-
-function releaseWheelGestureWhenIdle() {
-  const elapsed = performance.now() - lastWheelAt;
-  if (isPaging || elapsed < wheelGestureIdleMs) {
-    window.clearTimeout(wheelIdleTimer);
-    wheelIdleTimer = window.setTimeout(
-      releaseWheelGestureWhenIdle,
-      Math.max(32, wheelGestureIdleMs - elapsed)
-    );
-    return;
-  }
-
-  wheelGestureLocked = false;
+function normalizedWheelDeltaY(event) {
+  if (event.deltaMode === wheelDeltaMode.line) return event.deltaY * 40;
+  if (event.deltaMode === wheelDeltaMode.page) return event.deltaY * (window.innerHeight || 1);
+  return event.deltaY;
 }
 
-function armWheelGestureLock() {
-  lastWheelAt = performance.now();
-  window.clearTimeout(wheelIdleTimer);
-  wheelIdleTimer = window.setTimeout(releaseWheelGestureWhenIdle, wheelGestureIdleMs);
+const wheelStreamIdleMs = 180;
+const wheelIntentThreshold = 32;
+const wheelMomentumTailMs = 180;
+const wheelMomentumDeltaTolerance = 2;
+let lastWheelAt = 0;
+let lastWheelDirection = 0;
+let lastWheelAbsDelta = 0;
+let lastAcceptedWheelAt = -Infinity;
+let wheelIntentDelta = 0;
+let wheelIntentDirection = 0;
+let wheelStreamHasPaged = false;
+
+function resetWheelStream(direction = 0) {
+  wheelIntentDelta = 0;
+  wheelIntentDirection = direction;
+  wheelStreamHasPaged = false;
+}
+
+function isMomentumTail(direction, absDelta, elapsed, now) {
+  if (!wheelStreamHasPaged) return false;
+  if (elapsed > wheelStreamIdleMs) return false;
+  if (direction !== lastWheelDirection) return false;
+  if (now - lastAcceptedWheelAt < wheelMomentumTailMs) return true;
+  return absDelta <= lastWheelAbsDelta + wheelMomentumDeltaTolerance;
+}
+
+function pageByWheelDirection(direction) {
+  const points = buildSnapPoints();
+  if (points.length < 2) return false;
+
+  const currentY = window.scrollY || document.documentElement.scrollTop;
+  const currentIndex = nearestSnapIndex(points, currentY);
+  const nextIndex = Math.round(clamp(currentIndex + direction, 0, points.length - 1));
+  if (nextIndex === currentIndex) return false;
+
+  pageTo(points[nextIndex]);
+  return true;
 }
 
 function handleWheel(event) {
   if (!pagerEnabled()) return;
   event.preventDefault();
-  armWheelGestureLock();
-  if (isPaging || wheelGestureLocked) return;
 
-  const direction = event.deltaY > 0 ? 1 : event.deltaY < 0 ? -1 : 0;
+  const now = performance.now();
+  const deltaY = normalizedWheelDeltaY(event);
+  const direction = deltaY > 0 ? 1 : deltaY < 0 ? -1 : 0;
   if (!direction) return;
 
-  const points = buildSnapPoints();
-  if (points.length < 2) return;
+  const elapsed = now - lastWheelAt;
+  const absDelta = Math.abs(deltaY);
+  const startsNewStream = elapsed > wheelStreamIdleMs || direction !== lastWheelDirection;
+  const momentumTail = isMomentumTail(direction, absDelta, elapsed, now);
 
-  const currentY = window.scrollY || document.documentElement.scrollTop;
-  const currentIndex = nearestSnapIndex(points, currentY);
-  const nextIndex = Math.round(clamp(currentIndex + direction, 0, points.length - 1));
-  if (nextIndex === currentIndex) return;
+  lastWheelAt = now;
+  lastWheelDirection = direction;
+  lastWheelAbsDelta = absDelta;
 
-  wheelGestureLocked = true;
-  pageTo(points[nextIndex], armWheelGestureLock);
+  if (isPaging) return;
+
+  if (startsNewStream) resetWheelStream(direction);
+  if (momentumTail) return;
+  if (wheelStreamHasPaged) resetWheelStream(direction);
+
+  if (wheelIntentDirection && wheelIntentDirection !== direction) resetWheelStream(direction);
+  wheelIntentDirection = direction;
+  wheelIntentDelta += deltaY;
+  if (Math.abs(wheelIntentDelta) < wheelIntentThreshold) return;
+
+  if (pageByWheelDirection(direction)) {
+    wheelStreamHasPaged = true;
+    lastAcceptedWheelAt = now;
+    wheelIntentDelta = 0;
+  }
 }
 
 function handlePagerKeys(event) {
