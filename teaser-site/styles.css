@@ -1951,9 +1951,24 @@ p {
     display: none;
   }
 
+  /* Mobile GNB: drop the Download button and surface the language toggle. */
+  .nav-download {
+    display: none;
+  }
+
   .hero {
-    min-height: 94vh;
-    padding-top: 130px;
+    min-height: auto;
+    justify-content: flex-start;
+    padding-top: 112px;
+    padding-bottom: 56px;
+  }
+
+  /* Hero is normal flow on mobile (no full-screen paging), so the proof chips
+     must sit below the actions in-flow instead of being absolutely pinned
+     (which overlapped the CTA buttons). */
+  .hero-proof {
+    position: static;
+    margin-top: 26px;
   }
 
   .hero-visual {
@@ -2071,10 +2086,6 @@ p {
 
   .nav-actions {
     gap: 8px;
-  }
-
-  .language-toggle {
-    display: none;
   }
 
   .hero {
@@ -2225,5 +2236,60 @@ p {
     min-width: 124px;
     min-height: 124px;
     font-size: 16px;
+  }
+}
+
+/* Mobile: replace #motion's desktop converging-card choreography with a normal
+   2-column grid so cards (e.g. MCP / Local) never clip and there's no empty
+   gap. Placed after the earlier mobile blocks so it wins on source order. */
+@media (max-width: 980px) {
+  .parallax-story {
+    min-height: auto;
+  }
+
+  .parallax-pin {
+    height: auto;
+    min-height: 0;
+    padding: 112px 20px 64px;
+  }
+
+  .motion-copy {
+    position: static;
+    inset: auto;
+    max-width: 100%;
+    margin-inline: 0;
+  }
+
+  .motion-stage {
+    position: static;
+    inset: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 32px;
+    overflow: visible;
+    contain: none;
+    pointer-events: auto;
+  }
+
+  .motion-card {
+    position: static;
+    width: auto;
+    min-height: 0;
+  }
+}
+
+/* Mobile: desktop card min-heights leave too much empty vertical space once the
+   grids collapse to a single column, so size these cards to their content.
+   Scoped to the mobile media query — desktop (>980px) heights are untouched. */
+@media (max-width: 980px) {
+  .layer,
+  .statement,
+  .template-grid article,
+  .design-flow article,
+  .ops-proof-grid article,
+  .comparison-matrix article,
+  .proof-grid article {
+    min-height: auto;
   }
 }
