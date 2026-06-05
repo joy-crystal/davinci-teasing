@@ -20,7 +20,7 @@
   --red: var(--orange);
   --glass: rgba(15, 15, 16, 0.66);
   --glow: 0 0 42px rgba(200, 161, 97, 0.18);
-  --max: 1180px;
+  --max: 1240px;
   --nav-h: 72px;
   --font-display-en: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --font-display-kr: "Iowan Old Style", "Palatino Linotype", Georgia, "Gowun Batang", "Noto Serif KR", serif;
@@ -212,6 +212,16 @@ img {
   gap: clamp(14px, 2vw, 22px);
 }
 
+.nav-download {
+  min-height: 36px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
 .site-nav nav {
   display: flex;
   align-items: center;
@@ -367,6 +377,8 @@ h3 {
 
 .hero h1 {
   font-family: var(--font-brand);
+  font-size: clamp(60px, 8.5vw, 124px);
+  line-height: 0.9;
 }
 
 h1,
@@ -467,8 +479,26 @@ p {
   display: grid;
   align-items: center;
   min-height: 100vh;
-  padding: calc(var(--nav-h) + 48px) clamp(20px, 5vw, 72px) 96px;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding: calc(var(--nav-h) + 20px) clamp(20px, 4vw, 32px) 60px;
 }
+
+/* Wide screens: copy + runtime instrument grouped and centered (not edge-to-edge). */
+@media (min-width: 1024px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(440px, 460px);
+    column-gap: clamp(40px, 4vw, 72px);
+  }
+}
+
+/* Narrow screens: keep the hero copy-first; hide the side instrument. */
+@media (max-width: 1023px) {
+  .runtime-instrument {
+    display: none;
+  }
+}
+
 
 .hero::before {
   position: absolute;
@@ -484,17 +514,23 @@ p {
   filter: blur(0.2px);
 }
 
+/* Original pipeline-preview resource as a top-right backdrop: visible like the
+   B reference, but masked diagonally so it fades out toward the copy. */
 .hero-visual {
   position: absolute;
-  inset: 6vh auto auto 28vw;
-  width: min(1050px, 82vw);
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  opacity: 0.78;
-  filter: saturate(1.05) contrast(1.08);
-  border: 1px solid rgba(200, 161, 97, 0.18);
-  border-radius: 8px;
-  box-shadow: 0 32px 110px rgba(0, 0, 0, 0.55);
+  top: -4%;
+  right: -8%;
+  left: auto;
+  bottom: auto;
+  z-index: 0;
+  width: min(88vw, 1200px);
+  height: auto;
+  opacity: 0.32;
+  filter: saturate(0.82) contrast(1.06);
+  border-radius: 10px;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(215deg, #000 6%, rgba(0, 0, 0, 0.5) 44%, transparent 74%);
+  mask-image: linear-gradient(215deg, #000 6%, rgba(0, 0, 0, 0.5) 44%, transparent 74%);
 }
 
 .hero-orbit {
@@ -528,52 +564,157 @@ p {
   animation-duration: 34s;
 }
 
-.hero-console {
-  position: absolute;
-  right: clamp(20px, 5vw, 76px);
-  bottom: 92px;
+/* Runtime orchestration instrument: runtime lanes (Claude/Codex/Gemini/MCP)
+   on an orbit + routing flow, replacing the old da-command console. */
+.runtime-instrument {
+  position: relative;
   z-index: 4;
-  width: min(360px, 33vw);
-  padding: 16px;
-  border: 1px solid rgba(200, 161, 97, 0.22);
+  width: 100%;
+  max-width: 460px;
+  margin-left: auto;
+  border: 1px solid rgba(200, 161, 97, 0.2);
   border-radius: 8px;
-  background: rgba(15, 15, 16, 0.64);
-  backdrop-filter: blur(18px);
-  box-shadow: var(--glow);
+  background:
+    linear-gradient(135deg, rgba(41, 64, 100, 0.18), transparent 42%),
+    linear-gradient(315deg, rgba(107, 143, 126, 0.12), transparent 40%),
+    rgba(15, 15, 16, 0.72);
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.4), var(--glow);
+  backdrop-filter: blur(14px);
+  overflow: hidden;
 }
 
-.console-top,
-.console-row {
+.runtime-instrument::before {
+  position: absolute;
+  inset: 7%;
+  content: "";
+  border: 1px solid rgba(200, 161, 97, 0.16);
+  border-radius: 50%;
+}
+
+.runtime-instrument::after {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  content: "";
+  background: linear-gradient(to bottom, transparent, rgba(200, 161, 97, 0.3), transparent);
+}
+
+.instrument-top {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
-}
-
-.console-top {
-  margin-bottom: 12px;
+  gap: 10px;
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(200, 161, 97, 0.14);
   color: var(--muted);
   font-family: var(--font-label);
-  font-size: 12px;
-  text-transform: uppercase;
+  font-size: 11px;
 }
 
-.console-top strong {
-  color: var(--green);
-  font-size: 12px;
+.instrument-top span,
+.instrument-top strong {
+  white-space: nowrap;
 }
 
-.console-row {
+.instrument-top strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.orbit-system {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: min(300px, calc(100% - 64px));
+  aspect-ratio: 1;
+  place-items: center;
+  margin: 28px auto 16px;
+  border: 1px solid rgba(127, 149, 170, 0.18);
+  border-radius: 50%;
+}
+
+.orbit-system::before,
+.orbit-system::after {
+  position: absolute;
+  content: "";
+  border: 1px solid rgba(200, 161, 97, 0.2);
+  border-radius: 50%;
+}
+
+.orbit-system::before {
+  inset: 18%;
+}
+
+.orbit-system::after {
+  inset: 33%;
+}
+
+.orbit-system img {
+  width: 34%;
+  opacity: 0.5;
+}
+
+.orbit-label {
+  position: absolute;
+  display: inline-grid;
+  min-width: 92px;
   min-height: 34px;
-  border-top: 1px solid rgba(244, 241, 232, 0.08);
-  color: var(--cyan);
-  font-family: var(--font-code);
+  padding: 0 10px;
+  place-items: center;
+  border: 1px solid rgba(200, 161, 97, 0.26);
+  border-radius: 8px;
+  background: rgba(15, 15, 16, 0.82);
+  color: var(--ink);
+  font-family: var(--font-label);
   font-size: 12px;
 }
 
-.console-row em {
-  color: rgba(244, 241, 232, 0.56);
-  font-style: normal;
+.label-claude {
+  left: 0;
+  top: 18%;
+  border-color: rgba(41, 64, 100, 0.78);
+}
+
+.label-codex {
+  right: 0;
+  top: 20%;
+  border-color: rgba(107, 143, 126, 0.78);
+}
+
+.label-gemini {
+  left: 7%;
+  bottom: 12%;
+  border-color: rgba(208, 138, 100, 0.78);
+}
+
+.label-mcp {
+  right: 2%;
+  bottom: 12%;
+  border-color: rgba(127, 149, 170, 0.78);
+}
+
+.instrument-flow {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 8px;
+  padding: 0 18px 18px;
+}
+
+.instrument-flow span {
+  display: block;
+  min-height: 44px;
+  padding: 11px 15px;
+  border: 1px solid rgba(200, 161, 97, 0.18);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+  color: #ddd6cd;
+  font-family: var(--font-label);
+  font-size: 13px;
 }
 
 .hero-shade {
@@ -592,12 +733,21 @@ p {
 
 .hero-line {
   max-width: 640px;
-  margin-bottom: 30px;
+  margin-bottom: 16px;
   color: rgba(244, 241, 232, 0.82);
   font-family: var(--font-display);
   font-size: clamp(20px, 3vw, 30px);
   font-weight: 400;
   line-height: 1.35;
+}
+
+.hero-desc {
+  max-width: 600px;
+  margin: 0 0 30px;
+  color: rgba(244, 241, 232, 0.58);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
 }
 
 .hero-actions {
@@ -607,11 +757,15 @@ p {
 }
 
 .hero-proof {
+  position: absolute;
+  left: clamp(20px, 4vw, 32px);
+  right: clamp(20px, 4vw, 32px);
+  bottom: 22px;
+  z-index: 3;
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
   gap: 8px;
-  max-width: 680px;
-  margin-top: 22px;
 }
 
 .hero-proof span {
@@ -658,28 +812,6 @@ p {
   background: rgba(255, 255, 255, 0.06);
 }
 
-.command-ribbon {
-  position: absolute;
-  left: clamp(20px, 5vw, 72px);
-  right: clamp(20px, 5vw, 72px);
-  bottom: 22px;
-  z-index: 3;
-  display: flex;
-  gap: 10px;
-  overflow: hidden;
-  color: rgba(244, 241, 232, 0.78);
-  font-family: var(--font-code);
-  font-size: 12px;
-}
-
-.command-ribbon span {
-  flex: 0 0 auto;
-  padding: 9px 12px;
-  border: 1px solid rgba(200, 161, 97, 0.28);
-  border-radius: 999px;
-  background: rgba(15, 15, 16, 0.72);
-  box-shadow: inset 0 0 18px rgba(200, 161, 97, 0.04);
-}
 
 .parallax-story {
   --scene-progress: 1;
@@ -808,14 +940,16 @@ p {
     rgba(6, 8, 12, 0.74);
   backdrop-filter: blur(16px);
   box-shadow: 0 26px 80px rgba(0, 0, 0, 0.32), var(--glow);
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
 }
 
 .motion-card span {
   display: inline-flex;
-  margin-bottom: 34px;
-  color: var(--cyan);
+  margin-bottom: 16px;
+  color: var(--muted);
   font-family: var(--font-label);
   font-size: 12px;
+  text-transform: uppercase;
 }
 
 .motion-card strong {
@@ -833,31 +967,36 @@ p {
   font-size: 14px;
 }
 
-.card-prompt {
+.card-claude {
   left: calc(50% - var(--motion-card-w) - var(--motion-card-w) - var(--motion-card-gap) - var(--motion-card-half-gap));
   top: 58vh;
   right: auto;
-  border-color: rgba(200, 161, 97, 0.38);
+  border-color: rgba(41, 64, 100, 0.75);
 }
 
-.card-plan {
+.card-codex {
   left: calc(50% - var(--motion-card-w) - var(--motion-card-half-gap));
   top: 58vh;
   right: auto;
-  border-color: rgba(200, 161, 97, 0.38);
+  border-color: rgba(107, 143, 126, 0.75);
 }
 
-.card-work {
+.card-gemini {
   left: calc(50% + var(--motion-card-half-gap));
   top: 58vh;
-  border-color: rgba(208, 138, 100, 0.38);
+  border-color: rgba(208, 138, 100, 0.75);
 }
 
-.card-verify {
+.card-mcp {
   left: calc(50% + var(--motion-card-w) + var(--motion-card-gap) + var(--motion-card-half-gap));
   top: 58vh;
   right: auto;
-  border-color: rgba(166, 156, 189, 0.42);
+  border-color: rgba(127, 149, 170, 0.75);
+}
+
+.motion-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.4), var(--glow);
 }
 
 [data-depth] {
@@ -1842,28 +1981,28 @@ p {
     min-height: 158px;
   }
 
-  .card-prompt {
+  .card-claude {
     left: 10vw;
     top: 48%;
     right: auto;
     bottom: auto;
   }
 
-  .card-plan {
+  .card-codex {
     left: auto;
     right: 9vw;
     top: 55%;
     bottom: auto;
   }
 
-  .card-work {
+  .card-gemini {
     left: 14vw;
     right: auto;
     top: auto;
     bottom: 13%;
   }
 
-  .card-verify {
+  .card-mcp {
     left: auto;
     right: 8vw;
     top: auto;
@@ -1981,28 +2120,28 @@ p {
     line-height: 1.3;
   }
 
-  .card-prompt {
+  .card-claude {
     left: 16px;
     top: 61%;
     right: auto;
     bottom: auto;
   }
 
-  .card-plan {
+  .card-codex {
     left: auto;
     right: 16px;
     top: 66%;
     bottom: auto;
   }
 
-  .card-work {
+  .card-gemini {
     left: 16px;
     right: auto;
     top: 79%;
     bottom: auto;
   }
 
-  .card-verify {
+  .card-mcp {
     left: auto;
     right: 16px;
     top: 84%;
@@ -2011,17 +2150,6 @@ p {
 
   .hero-orbit {
     display: none;
-  }
-
-  .command-ribbon {
-    flex-wrap: wrap;
-    overflow: visible;
-    bottom: 16px;
-    gap: 8px;
-  }
-
-  .command-ribbon span {
-    padding: 8px 10px;
   }
 
   .hero-line {

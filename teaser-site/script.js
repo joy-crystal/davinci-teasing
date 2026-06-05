@@ -32,27 +32,29 @@ const copy = {
     "chapter.comparison": "Compare",
     "chapter.proof": "Proof",
     "chapter.cta": "Summary",
-    "console.pipeline": "pipeline",
-    "console.active": "verified",
-    "console.idea": "intent captured",
-    "console.plan": "route mapped",
-    "console.work": "evidence live",
+    "instrument.route": "Production route",
+    "instrument.flow": "Intent → Evidence → Gate",
+    "instrument.item1": "Runtime-aware routing",
+    "instrument.item2": "Skill / Agent selection",
+    "instrument.item3": "Evidence handoff",
+    "instrument.item4": "Verification gate",
     "hero.eyebrow": "AI Runtime Orchestration Platform",
     "hero.line": "Orchestrating the strengths of multiple AI runtimes into one production line.",
+    "hero.desc": "Davinci turns human intent into a software production line that understands its runtime — routing the work, selecting the right agent, leaving evidence, verifying every handoff, and carrying it through to team operations.",
     "hero.cta.primary": "See the Pipeline",
     "hero.cta.secondary": "View Studio",
     "motion.label": "03 / Unified AI Runtime Pipeline",
     "motion.eyebrow": "Routed by role, not rivalry",
     "motion.title": "Different runtimes, one production line.",
     "motion.body": "Claude Code, Codex CLI, Gemini CLI, and MCP/local tools move by role, context, and proof.",
-    "motion.card.prompt.title": "Intent",
-    "motion.card.prompt.body": "Capture the work request.",
-    "motion.card.plan.title": "Routing",
-    "motion.card.plan.body": "Select skill, agent, and runtime.",
-    "motion.card.work.title": "Handoff",
-    "motion.card.work.body": "Carry evidence forward.",
-    "motion.card.verify.title": "Gate",
-    "motion.card.verify.body": "Verify before the next action.",
+    "motion.lane.claude.role": "Reasoning lane",
+    "motion.lane.claude.body": "Deep reasoning, planning, and complex implementation.",
+    "motion.lane.codex.role": "Execution lane",
+    "motion.lane.codex.body": "Local code edits, runs, and CI/CD automation.",
+    "motion.lane.gemini.role": "Context lane",
+    "motion.lane.gemini.body": "Broad context, research, and extension workflows.",
+    "motion.lane.mcp.role": "Tool lane",
+    "motion.lane.mcp.body": "Docs, browser, symbol search, deploy, and verification tools.",
     "gap.label": "02 / Trust Gap",
     "gap.eyebrow": "Code generation is not production",
     "gap.title": "AI is faster. Production still needs proof.",
@@ -154,7 +156,7 @@ const copy = {
   },
   ko: {
     metaTitle: "Davinci - AI Runtime Orchestration Platform",
-    metaDescription: "Davinci는 Claude Code, Codex CLI, Gemini CLI, MCP/local tools를 하나의 검증 가능한 software production pipeline으로 연결합니다.",
+    metaDescription: "Davinci는 Claude Code, Codex CLI, Gemini CLI, MCP, agent, hook을 하나의 production pipeline으로 연결해 AI software workflow를 연속적으로 운영합니다.",
     "nav.product": "Product",
     "nav.pipeline": "Pipeline",
     "nav.agents": "Harness",
@@ -173,27 +175,29 @@ const copy = {
     "chapter.comparison": "Compare",
     "chapter.proof": "Proof",
     "chapter.cta": "Summary",
-    "console.pipeline": "pipeline",
-    "console.active": "verified",
-    "console.idea": "intent captured",
-    "console.plan": "route mapped",
-    "console.work": "evidence live",
+    "instrument.route": "생산 경로",
+    "instrument.flow": "의도 → 증거 → 게이트",
+    "instrument.item1": "실행 환경 기반 라우팅",
+    "instrument.item2": "Skill / Agent 선택",
+    "instrument.item3": "증거 인계",
+    "instrument.item4": "검증 게이트",
     "hero.eyebrow": "AI Runtime Orchestration Platform",
-    "hero.line": "여러 AI Runtime의 강점을 하나의 Production Line으로 연결합니다.",
+    "hero.line": "여러 AI의 장점을 하나의 생산 라인으로.",
+    "hero.desc": "Davinci는 사람의 의도를 실행 환경을 이해하는 소프트웨어 생산 라인으로 바꿉니다. 작업을 라우팅하고, 적절한 agent를 선택하고, 증거를 남기고, 인계를 검증한 뒤 팀 운영까지 이어갑니다.",
     "hero.cta.primary": "See the Pipeline",
     "hero.cta.secondary": "View Studio",
     "motion.label": "03 / Unified AI Runtime Pipeline",
     "motion.eyebrow": "Routed by role, not rivalry",
     "motion.title": "서로 다른 Runtime을 하나의 Production Line으로.",
     "motion.body": "Claude Code, Codex CLI, Gemini CLI, MCP/Local Tools가 역할, 맥락, Evidence 기준으로 이어집니다.",
-    "motion.card.prompt.title": "Intent",
-    "motion.card.prompt.body": "작업 요청을 포착합니다.",
-    "motion.card.plan.title": "Routing",
-    "motion.card.plan.body": "Skill, Agent, Runtime을 선택합니다.",
-    "motion.card.work.title": "Handoff",
-    "motion.card.work.body": "Evidence를 다음 단계로 넘깁니다.",
-    "motion.card.verify.title": "Gate",
-    "motion.card.verify.body": "다음 Action 전 검증합니다.",
+    "motion.lane.claude.role": "추론 레인",
+    "motion.lane.claude.body": "깊은 추론·계획·복잡한 구현.",
+    "motion.lane.codex.role": "실행 레인",
+    "motion.lane.codex.body": "로컬 코드 수정·실행·CI/CD 자동화.",
+    "motion.lane.gemini.role": "Context 레인",
+    "motion.lane.gemini.body": "넓은 Context·리서치·확장 워크플로우.",
+    "motion.lane.mcp.role": "도구 레인",
+    "motion.lane.mcp.body": "문서·브라우저·심볼 검색·배포·검증 도구.",
     "gap.label": "02 / Trust Gap",
     "gap.eyebrow": "Code generation is not production",
     "gap.title": "AI는 빨라졌지만, Production은 여전히 Proof가 필요합니다.",
@@ -746,7 +750,7 @@ const REVEAL_STEP_MS = 55;
 const typeSelector =
   ".section-label, .eyebrow, h1, h2, .hero-line, .section-heading > p:not(.eyebrow), .motion-copy > p:not(.eyebrow), .constellation-copy > p:not(.eyebrow), .final-copy > p:not(.eyebrow)";
 const blockSelector =
-  ".hero-actions, .hero-proof, .command-ribbon, .fracture-map, .source-row, .inline-cta, .statement, .layer, .metric-band > div, .agent-map, .template-grid article, .design-flow article, .guardrail-list li, .ops-rail, .ops-proof-grid article, .comparison-matrix article, .proof-grid article, .motion-card, .final-actions";
+  ".hero-desc, .hero-actions, .hero-proof, .runtime-instrument, .fracture-map, .source-row, .inline-cta, .statement, .layer, .metric-band > div, .agent-map, .template-grid article, .design-flow article, .guardrail-list li, .ops-rail, .ops-proof-grid article, .comparison-matrix article, .proof-grid article, .motion-card, .final-actions";
 
 function typeOutElement(element, baseOrder) {
   const text = element.textContent;
@@ -797,6 +801,52 @@ function setupSectionChoreography() {
 
 applyLanguage(savedLanguage);
 setupSectionChoreography();
+
+// Provider-agnostic analytics dispatch. Pushes the measurement events from the
+// plan (§11) to window.dataLayer (and gtag if present); a no-op until a provider
+// is wired, so it never throws. Event type is inferred from the name suffix:
+//   *_view  -> fires once when the element scrolls into view
+//   *_hover -> fires on pointer enter
+//   else    -> fires on click (covers *_click / *_open / *_expand / *_toggle)
+function trackEvent(name) {
+  if (!name) return;
+  try {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: name, ts: Date.now() });
+    if (typeof window.gtag === "function") window.gtag("event", name);
+  } catch {
+    // No analytics provider available; ignore.
+  }
+}
+
+function setupEventTracking() {
+  document.querySelectorAll("[data-event]").forEach((element) => {
+    const name = element.dataset.event;
+    if (!name || element.dataset.eventBound === "1") return;
+    element.dataset.eventBound = "1";
+
+    if (name.endsWith("_view")) {
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              trackEvent(name);
+              obs.disconnect();
+            }
+          });
+        },
+        { threshold: 0.4 }
+      );
+      observer.observe(element);
+    } else if (name.endsWith("_hover")) {
+      element.addEventListener("pointerenter", () => trackEvent(name), { passive: true });
+    } else {
+      element.addEventListener("click", () => trackEvent(name), { passive: true });
+    }
+  });
+}
+
+setupEventTracking();
 
 languageButtons.forEach((button) => {
   button.addEventListener("click", () => {

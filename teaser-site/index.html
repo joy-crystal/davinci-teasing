@@ -8,6 +8,23 @@
       content="Davinci orchestrates Claude Code, Codex CLI, Gemini CLI, and MCP/local tools into one verified software production pipeline."
     />
     <title>Davinci - AI Runtime Orchestration Platform</title>
+    <!-- Open Graph / Twitter (per 02-final-plan §16). og:image uses a relative
+         asset; switch to an absolute URL once the deploy domain is known. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Davinci" />
+    <meta property="og:title" content="여러 AI의 장점을 하나의 생산 라인으로" />
+    <meta
+      property="og:description"
+      content="AI runtime을 수동으로 오가게 두지 않고, intent, routing, execution, evidence, verification을 하나의 pipeline으로 묶는 Davinci 공식 사이트."
+    />
+    <meta property="og:image" content="./assets/davinci-pipeline-preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="여러 AI의 장점을 하나의 생산 라인으로" />
+    <meta
+      name="twitter:description"
+      content="AI runtime을 수동으로 오가게 두지 않고, intent, routing, execution, evidence, verification을 하나의 pipeline으로 묶는 Davinci 공식 사이트."
+    />
+    <meta name="twitter:image" content="./assets/davinci-pipeline-preview.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
@@ -50,6 +67,14 @@
           <button type="button" data-lang-option="en" aria-pressed="true">EN</button>
           <button type="button" data-lang-option="ko" aria-pressed="false">KR</button>
         </div>
+        <a
+          class="button primary nav-download"
+          href="https://github.com/andrewkim-gif/davinci-framework"
+          target="_blank"
+          rel="noopener"
+          data-event="framework_install_click"
+          >Download</a
+        >
       </div>
     </header>
 
@@ -78,20 +103,6 @@
           data-parallax
           data-speed="-0.18"
         />
-        <div class="hero-orbit" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="hero-console" aria-label="Davinci pipeline status">
-          <div class="console-top">
-            <span data-i18n="console.pipeline">pipeline</span>
-            <strong data-i18n="console.active">verified</strong>
-          </div>
-          <div class="console-row"><span>/da:idea</span><em data-i18n="console.idea">intent captured</em></div>
-          <div class="console-row"><span>/da:plan</span><em data-i18n="console.plan">route mapped</em></div>
-          <div class="console-row"><span>/da:work</span><em data-i18n="console.work">evidence live</em></div>
-        </div>
         <div class="hero-shade" aria-hidden="true"></div>
         <div class="hero-copy">
           <p class="eyebrow" data-i18n="hero.eyebrow">AI Runtime Orchestration Platform</p>
@@ -99,27 +110,41 @@
           <p class="hero-line" data-i18n="hero.line">
             Orchestrating the strengths of multiple AI runtimes into one production line.
           </p>
+          <p class="hero-desc" data-i18n="hero.desc">
+            Davinci turns human intent into a software production line that understands its runtime — routing the work, selecting the right agent, leaving evidence, verifying every handoff, and carrying it through to team operations.
+          </p>
           <div class="hero-actions" aria-label="Primary actions">
             <a class="button primary" href="#motion" data-event="hero_cta_click" data-i18n="hero.cta.primary">See the Pipeline</a>
             <a class="button secondary" href="#templates" data-event="studio_view" data-i18n="hero.cta.secondary">View Studio</a>
           </div>
-          <div class="hero-proof" aria-label="Davinci proof points">
-            <span>60+ workflow skills</span>
-            <span>33+ expert agents</span>
-            <span>20+ hook guardrails</span>
-            <span>12K+ core harness LOC</span>
-            <span>3-Tier verification</span>
-            <span>multi-runtime pipeline</span>
-            <span>Native Studio</span>
+        </div>
+        <div class="runtime-instrument" aria-label="Runtime orchestration preview">
+          <div class="instrument-top">
+            <span data-i18n="instrument.route">Production route</span>
+            <strong data-i18n="instrument.flow">Intent → Evidence → Gate</strong>
+          </div>
+          <div class="orbit-system" aria-hidden="true">
+            <img src="./assets/davinci-symbol.png" alt="" />
+            <span class="orbit-label label-claude">Claude</span>
+            <span class="orbit-label label-codex">Codex</span>
+            <span class="orbit-label label-gemini">Gemini</span>
+            <span class="orbit-label label-mcp">MCP / Local</span>
+          </div>
+          <div class="instrument-flow">
+            <span data-i18n="instrument.item1">Runtime-aware routing</span>
+            <span data-i18n="instrument.item2">Skill / Agent selection</span>
+            <span data-i18n="instrument.item3">Evidence handoff</span>
+            <span data-i18n="instrument.item4">Verification gate</span>
           </div>
         </div>
-        <div class="command-ribbon" aria-label="Davinci commands">
-          <span>/da:idea</span>
-          <span>/da:plan</span>
-          <span>/da:work</span>
-          <span>/da:verify</span>
-          <span>/da:deploy</span>
-          <span>/da:monitor</span>
+        <div class="hero-proof" aria-label="Davinci proof points">
+          <span>60+ workflow skills</span>
+          <span>33+ expert agents</span>
+          <span>20+ hook guardrails</span>
+          <span>12K+ core harness LOC</span>
+          <span>3-Tier verification</span>
+          <span>multi-runtime pipeline</span>
+          <span>Native Studio</span>
         </div>
       </section>
 
@@ -162,7 +187,7 @@
       </section>
 
       <!-- 03 / Unified AI Runtime Pipeline -->
-      <section id="motion" class="parallax-story" data-section data-chapter="motion">
+      <section id="motion" class="parallax-story" data-section data-chapter="motion" data-event="runtime_pipeline_section_view">
         <div class="parallax-pin">
           <div class="motion-backplane">
             <img
@@ -184,26 +209,26 @@
             </p>
           </div>
 
-          <div class="motion-stage" aria-label="Runtime pipeline stages">
-            <article class="motion-card card-prompt">
-              <span>01</span>
-              <strong data-i18n="motion.card.prompt.title">Intent</strong>
-              <p data-i18n="motion.card.prompt.body">Capture the work request.</p>
+          <div class="motion-stage" aria-label="AI runtime lanes">
+            <article class="motion-card card-claude" data-event="runtime_lane_hover">
+              <span data-i18n="motion.lane.claude.role">Reasoning lane</span>
+              <strong>Claude</strong>
+              <p data-i18n="motion.lane.claude.body">Deep reasoning, planning, and complex implementation.</p>
             </article>
-            <article class="motion-card card-plan">
-              <span>02</span>
-              <strong data-i18n="motion.card.plan.title">Routing</strong>
-              <p data-i18n="motion.card.plan.body">Select skill, agent, and runtime.</p>
+            <article class="motion-card card-codex" data-event="runtime_lane_hover">
+              <span data-i18n="motion.lane.codex.role">Execution lane</span>
+              <strong>Codex</strong>
+              <p data-i18n="motion.lane.codex.body">Local code edits, runs, and CI/CD automation.</p>
             </article>
-            <article class="motion-card card-work">
-              <span>03</span>
-              <strong data-i18n="motion.card.work.title">Handoff</strong>
-              <p data-i18n="motion.card.work.body">Carry evidence forward.</p>
+            <article class="motion-card card-gemini" data-event="runtime_lane_hover">
+              <span data-i18n="motion.lane.gemini.role">Context lane</span>
+              <strong>Gemini</strong>
+              <p data-i18n="motion.lane.gemini.body">Broad context, research, and extension workflows.</p>
             </article>
-            <article class="motion-card card-verify">
-              <span>04</span>
-              <strong data-i18n="motion.card.verify.title">Gate</strong>
-              <p data-i18n="motion.card.verify.body">Verify before the next action.</p>
+            <article class="motion-card card-mcp" data-event="runtime_lane_hover">
+              <span data-i18n="motion.lane.mcp.role">Tool lane</span>
+              <strong>MCP / Local</strong>
+              <p data-i18n="motion.lane.mcp.body">Docs, browser, symbol search, deploy, and verification tools.</p>
             </article>
           </div>
         </div>
@@ -220,7 +245,7 @@
               PM Agent, Reflexion, Handoff Chain, hooks, skills, and agent persona work in the same pipeline.
             </p>
           </div>
-          <div class="agent-map" aria-label="Agent specialist groups">
+          <div class="agent-map" aria-label="Agent specialist groups" data-event="harness_scorecard_open">
             <div class="agent-lattice" aria-hidden="true"></div>
             <span class="agent-node n1" data-i18n="agents.node.arch">PM Agent</span>
             <span class="agent-node n2" data-i18n="agents.node.frontend">Skills</span>
@@ -252,7 +277,7 @@
             <span>Skill / Agent Selection</span>
             <p data-i18n="system.layer.server">Workflow skills and agent persona shape execution.</p>
           </article>
-          <article class="layer layer-c">
+          <article class="layer layer-c" data-event="evidence_handoff_expand">
             <span>Evidence Handoff</span>
             <p data-i18n="system.layer.engine">Outputs carry context, decisions, and checks forward.</p>
           </article>
