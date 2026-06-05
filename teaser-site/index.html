@@ -49,20 +49,19 @@
     <div class="ambient-cursor" aria-hidden="true"></div>
     <div class="noise-layer" aria-hidden="true"></div>
 
-    <header class="site-nav" aria-label="Primary navigation">
+    <header class="site-nav">
       <a class="brand-mark" href="#top" aria-label="Davinci home">
         <span class="brand-sigil"><img src="./assets/davinci-symbol.png" alt="" /></span>
         <span>Davinci</span>
       </a>
+      <nav aria-label="Primary navigation">
+        <a href="#motion" data-i18n="nav.pipeline">Pipeline</a>
+        <a href="#agents" data-i18n="nav.agents">Harness</a>
+        <a href="#guardrails" data-i18n="nav.verification">Verification</a>
+        <a href="#templates" data-i18n="nav.templates">Studio</a>
+        <a href="#operations" data-i18n="nav.operations">Operations</a>
+      </nav>
       <div class="nav-actions">
-        <nav>
-          <a href="#top" data-i18n="nav.product">Product</a>
-          <a href="#motion" data-i18n="nav.pipeline">Pipeline</a>
-          <a href="#agents" data-i18n="nav.agents">Harness</a>
-          <a href="#templates" data-i18n="nav.templates">Studio</a>
-          <a href="#proof" data-i18n="nav.proof">Proof</a>
-          <a href="#final-cta" data-i18n="nav.docs">Summary</a>
-        </nav>
         <div class="language-toggle" role="group" aria-label="Language selection">
           <button type="button" data-lang-option="en" aria-pressed="true">EN</button>
           <button type="button" data-lang-option="ko" aria-pressed="false">KR</button>
@@ -98,43 +97,46 @@
       <section class="hero section-viewport" data-section data-chapter="hero">
         <img
           class="hero-visual"
-          src="./assets/davinci-pipeline-preview.png"
-          alt="Davinci workflow preview with runtime lanes, pipeline nodes, and command output"
+          src="./assets/mood2.png"
+          alt=""
           data-parallax
           data-speed="-0.18"
         />
         <div class="hero-shade" aria-hidden="true"></div>
-        <div class="hero-copy">
-          <p class="eyebrow" data-i18n="hero.eyebrow">AI Runtime Orchestration Platform</p>
-          <h1>Davinci</h1>
-          <p class="hero-line" data-i18n="hero.line">
-            Orchestrating the strengths of multiple AI runtimes into one production line.
-          </p>
-          <p class="hero-desc" data-i18n="hero.desc">
-            Davinci turns human intent into a software production line that understands its runtime — routing the work, selecting the right agent, leaving evidence, verifying every handoff, and carrying it through to team operations.
-          </p>
-          <div class="hero-actions" aria-label="Primary actions">
-            <a class="button primary" href="#motion" data-event="hero_cta_click" data-i18n="hero.cta.primary">See the Pipeline</a>
-            <a class="button secondary" href="#templates" data-event="studio_view" data-i18n="hero.cta.secondary">View Studio</a>
+        <div class="hero-orbit" aria-hidden="true"></div>
+        <div class="hero-layout">
+          <div class="hero-copy">
+            <p class="eyebrow" data-i18n="hero.eyebrow">AI Runtime Orchestration Platform</p>
+            <h1>Davinci</h1>
+            <p class="hero-line" data-i18n="hero.line">
+              Orchestrating the strengths of multiple AI runtimes into one production line.
+            </p>
+            <p class="hero-desc" data-i18n="hero.desc">
+              Davinci turns human intent into a software production line that understands its runtime — routing the work, selecting the right agent, leaving evidence, verifying every handoff, and carrying it through to team operations.
+            </p>
+            <div class="hero-actions" aria-label="Primary actions">
+              <a class="button primary" href="#motion" data-event="hero_cta_click" data-i18n="hero.cta.primary">See the Pipeline</a>
+              <a class="button secondary" href="#templates" data-i18n="hero.cta.secondary">View Studio</a>
+            </div>
           </div>
-        </div>
-        <div class="runtime-instrument" aria-label="Runtime orchestration preview">
-          <div class="instrument-top">
-            <span data-i18n="instrument.route">Production route</span>
-            <strong data-i18n="instrument.flow">Intent → Evidence → Gate</strong>
-          </div>
-          <div class="orbit-system" aria-hidden="true">
-            <img src="./assets/davinci-symbol.png" alt="" />
-            <span class="orbit-label label-claude">Claude</span>
-            <span class="orbit-label label-codex">Codex</span>
-            <span class="orbit-label label-gemini">Gemini</span>
-            <span class="orbit-label label-mcp">MCP / Local</span>
-          </div>
-          <div class="instrument-flow">
-            <span data-i18n="instrument.item1">Runtime-aware routing</span>
-            <span data-i18n="instrument.item2">Skill / Agent selection</span>
-            <span data-i18n="instrument.item3">Evidence handoff</span>
-            <span data-i18n="instrument.item4">Verification gate</span>
+          <div class="runtime-instrument" aria-label="Runtime orchestration preview">
+            <div class="instrument-top">
+              <span data-i18n="instrument.route">Production route</span>
+              <strong data-i18n="instrument.flow">Intent → Evidence → Gate</strong>
+            </div>
+            <div class="orbit-system" aria-hidden="true">
+              <img src="./assets/davinci-symbol.png" alt="" />
+              <span class="orbit-label label-claude">Claude</span>
+              <span class="orbit-label label-codex">Codex</span>
+              <span class="orbit-label label-gemini">Gemini</span>
+              <span class="orbit-label label-mcp">MCP / Local</span>
+            </div>
+            <div class="instrument-flow">
+              <span data-i18n="instrument.item1">Runtime-aware routing</span>
+              <span data-i18n="instrument.item2">Skill / Agent selection</span>
+              <span data-i18n="instrument.item3">Evidence handoff</span>
+              <span data-i18n="instrument.item4">Verification gate</span>
+            </div>
           </div>
         </div>
         <div class="hero-proof" aria-label="Davinci proof points">
@@ -167,7 +169,6 @@
               <span>Coding-agent misalignment study</span>
               <span>Longitudinal AI coding assistant study</span>
             </div>
-            <a class="button secondary inline-cta" href="#guardrails" data-event="verification_view" data-i18n="gap.cta">View Verification</a>
           </div>
           <div class="statement-stack">
             <article class="statement">
@@ -189,13 +190,6 @@
       <!-- 03 / Unified AI Runtime Pipeline -->
       <section id="motion" class="parallax-story" data-section data-chapter="motion" data-event="runtime_pipeline_section_view">
         <div class="parallax-pin">
-          <div class="motion-backplane">
-            <img
-              src="./assets/davinci-pipeline-preview.png"
-              alt=""
-              aria-hidden="true"
-            />
-          </div>
           <div class="motion-grid" aria-hidden="true"></div>
           <div class="motion-rail rail-a" aria-hidden="true"></div>
           <div class="motion-rail rail-b" aria-hidden="true"></div>
@@ -340,7 +334,7 @@
             Idea, UX, code, and visual QA move as one work unit.
           </p>
         </div>
-        <div class="design-flow" aria-label="Design-to-code production flow" data-event="create_studio_view">
+        <div class="design-flow" aria-label="Design-to-code production flow">
           <article>
             <span>01</span>
             <strong data-i18n="design.step.1.title">Design Intent</strong>
@@ -401,7 +395,7 @@
             Davinci connects existing runtimes into one verified pipeline.
           </p>
         </div>
-        <div class="comparison-matrix" aria-label="Assistant versus orchestration comparison" data-event="comparison_axis_toggle">
+        <div class="comparison-matrix" aria-label="Assistant versus orchestration comparison">
           <article><span>Single assistant</span><strong>Multi-runtime orchestration</strong></article>
           <article><span>Code generation</span><strong>Production pipeline</strong></article>
           <article><span>Manual supervision</span><strong>Structured verification</strong></article>
@@ -428,7 +422,7 @@
           <article><strong>3</strong><span>verification tiers</span><p data-i18n="proof.tiers">Gate before handoff.</p></article>
           <article><strong>Native</strong><span>desktop studio</span><p data-i18n="proof.studio">Inspectable state.</p></article>
         </div>
-        <a class="button secondary inline-cta" href="#final-cta" data-event="summary_view" data-i18n="proof.cta">View Summary</a>
+        <a class="button secondary inline-cta" href="#final-cta" data-i18n="proof.cta">View Summary</a>
       </section>
 
       <!-- 12 / CTA -->
@@ -445,8 +439,11 @@
             Davinci turns AI execution into routed, evidenced, team-ready software work.
           </p>
           <div class="final-actions" aria-label="Final actions">
-            <a class="button primary" href="#motion" data-event="hero_cta_click" data-i18n="final.cta.pipeline">See the Pipeline</a>
-            <a class="button secondary" href="#proof" data-event="proof_view" data-i18n="final.cta.proof">View Proof</a>
+            <button class="button primary cta-coming-soon" type="button" data-coming-soon data-event="desktop_download_click">
+              <span data-i18n="final.cta.download">Download App</span>
+              <span class="cta-tooltip" data-i18n="final.cta.comingSoon">Coming soon</span>
+            </button>
+            <a class="button secondary" href="https://github.com/andrewkim-gif/davinci-framework" target="_blank" rel="noopener" data-event="framework_install_click" data-i18n="final.cta.framework">Install Framework</a>
           </div>
         </div>
       </section>

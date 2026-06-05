@@ -14,12 +14,11 @@ const copy = {
   en: {
     metaTitle: "Davinci - AI Runtime Orchestration Platform",
     metaDescription: "Davinci orchestrates Claude Code, Codex CLI, Gemini CLI, and MCP/local tools into one verified software production pipeline.",
-    "nav.product": "Product",
     "nav.pipeline": "Pipeline",
     "nav.agents": "Harness",
+    "nav.verification": "Verification",
     "nav.templates": "Studio",
-    "nav.proof": "Proof",
-    "nav.docs": "Summary",
+    "nav.operations": "Operations",
     "chapter.start": "Start",
     "chapter.gap": "Trust",
     "chapter.motion": "Pipeline",
@@ -67,7 +66,6 @@ const copy = {
     "gap.statement.2.body": "Long work breaks when context, decisions, and checks are not handed forward.",
     "gap.statement.3.title": "Operational gap",
     "gap.statement.3.body": "Real teams still need worktree isolation, PR review, Jira, Slack, deploy, and monitor.",
-    "gap.cta": "View Verification",
     "system.label": "05 / Multi-Routing",
     "system.eyebrow": "Runtime-aware routing",
     "system.title": "Requests become routes through skills, agents, runtimes, tools, and gates.",
@@ -146,8 +144,9 @@ const copy = {
     "final.eyebrow": "Human intent. AI execution. System-level verification.",
     "final.title": "One verified production pipeline.",
     "final.body": "Davinci turns AI execution into routed, evidenced, team-ready software work.",
-    "final.cta.pipeline": "See the Pipeline",
-    "final.cta.proof": "View Proof",
+    "final.cta.download": "Download App",
+    "final.cta.framework": "Install Framework",
+    "final.cta.comingSoon": "Coming soon",
     "footer.line": "AI Runtime Orchestration Platform for verified software production.",
     "footer.pipeline": "Pipeline",
     "footer.harness": "Harness",
@@ -157,12 +156,11 @@ const copy = {
   ko: {
     metaTitle: "Davinci - AI Runtime Orchestration Platform",
     metaDescription: "Davinci는 Claude Code, Codex CLI, Gemini CLI, MCP, agent, hook을 하나의 production pipeline으로 연결해 AI software workflow를 연속적으로 운영합니다.",
-    "nav.product": "Product",
     "nav.pipeline": "Pipeline",
     "nav.agents": "Harness",
+    "nav.verification": "Verification",
     "nav.templates": "Studio",
-    "nav.proof": "Proof",
-    "nav.docs": "Summary",
+    "nav.operations": "Operations",
     "chapter.start": "Start",
     "chapter.gap": "Trust",
     "chapter.motion": "Pipeline",
@@ -210,7 +208,6 @@ const copy = {
     "gap.statement.2.body": "Context, Decision, Check가 이어지지 않으면 긴 작업은 끊깁니다.",
     "gap.statement.3.title": "Operational gap",
     "gap.statement.3.body": "팀에는 Worktree, PR Review, Jira, Slack, Deploy, Monitor가 필요합니다.",
-    "gap.cta": "View Verification",
     "system.label": "05 / Multi-Routing",
     "system.eyebrow": "Runtime-aware routing",
     "system.title": "요청은 Skill, Agent, Runtime, Tool, Gate를 지나는 Route가 됩니다.",
@@ -289,8 +286,9 @@ const copy = {
     "final.eyebrow": "Human intent. AI execution. System-level verification.",
     "final.title": "하나의 검증된 Production Pipeline.",
     "final.body": "Davinci는 AI Execution을 Routed, Evidenced, Team-ready Software Work로 바꿉니다.",
-    "final.cta.pipeline": "See the Pipeline",
-    "final.cta.proof": "View Proof",
+    "final.cta.download": "Download App",
+    "final.cta.framework": "Install Framework",
+    "final.cta.comingSoon": "준비중입니다",
     "footer.line": "Verified Software Production을 위한 AI Runtime Orchestration Platform.",
     "footer.pipeline": "Pipeline",
     "footer.harness": "Harness",
@@ -847,6 +845,20 @@ function setupEventTracking() {
 }
 
 setupEventTracking();
+
+// Desktop app is not shipped yet: clicking the download CTA reveals a "coming
+// soon" tooltip instead of navigating, so we never wire a placeholder link.
+function setupComingSoon() {
+  document.querySelectorAll("[data-coming-soon]").forEach((el) => {
+    el.addEventListener("click", (event) => {
+      event.preventDefault();
+      el.classList.add("show-tooltip");
+      window.clearTimeout(el.comingSoonTimer);
+      el.comingSoonTimer = window.setTimeout(() => el.classList.remove("show-tooltip"), 2200);
+    });
+  });
+}
+setupComingSoon();
 
 languageButtons.forEach((button) => {
   button.addEventListener("click", () => {

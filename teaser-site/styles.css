@@ -212,8 +212,10 @@ img {
   gap: clamp(14px, 2vw, 22px);
 }
 
-.nav-download {
-  min-height: 36px;
+/* Higher specificity than .button so the nav pill height (matching the
+   language toggle's 36px) and radius win over the base .button rule. */
+.site-nav .nav-download {
+  min-height: 38px;
   padding: 0 16px;
   border-radius: 999px;
   font-family: var(--font-display);
@@ -476,19 +478,28 @@ p {
 }
 
 .hero {
-  display: grid;
-  align-items: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   min-height: 100vh;
-  max-width: var(--max);
-  margin-inline: auto;
   padding: calc(var(--nav-h) + 20px) clamp(20px, 4vw, 32px) 60px;
 }
 
-/* Wide screens: copy + runtime instrument grouped and centered (not edge-to-edge). */
+/* Copy + runtime instrument grouped and centered to --max (background stays full-bleed). */
+.hero-layout {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  align-items: center;
+  gap: clamp(40px, 5vw, 76px);
+  width: min(var(--max), 100%);
+  margin: 0 auto;
+}
+
 @media (min-width: 1024px) {
-  .hero {
-    grid-template-columns: minmax(0, 1fr) minmax(440px, 460px);
-    column-gap: clamp(40px, 4vw, 72px);
+  .hero-layout {
+    grid-template-columns: minmax(0, 0.98fr) minmax(440px, 0.68fr);
   }
 }
 
@@ -518,50 +529,47 @@ p {
    B reference, but masked diagonally so it fades out toward the copy. */
 .hero-visual {
   position: absolute;
-  top: -4%;
-  right: -8%;
+  top: -8%;
+  right: -12%;
   left: auto;
   bottom: auto;
   z-index: 0;
-  width: min(88vw, 1200px);
+  width: min(92vw, 1400px);
   height: auto;
-  opacity: 0.32;
-  filter: saturate(0.82) contrast(1.06);
-  border-radius: 10px;
+  opacity: 0.34;
+  filter: saturate(0.82) contrast(1.08);
   pointer-events: none;
-  -webkit-mask-image: linear-gradient(215deg, #000 6%, rgba(0, 0, 0, 0.5) 44%, transparent 74%);
-  mask-image: linear-gradient(215deg, #000 6%, rgba(0, 0, 0, 0.5) 44%, transparent 74%);
 }
 
+/* Concentric ring decoration matching the B reference hero: a gold outer ring
+   with two inner blue-grey rings, set on the right behind the content. */
 .hero-orbit {
   position: absolute;
-  inset: 12vh 7vw auto auto;
+  top: 18%;
+  right: 8%;
   z-index: 1;
-  width: min(520px, 40vw);
+  width: min(46vw, 660px);
   aspect-ratio: 1;
-  overflow: hidden;
+  border: 1px solid rgba(200, 161, 97, 0.24);
+  border-radius: 50%;
+  opacity: 0.64;
   pointer-events: none;
 }
 
-.hero-orbit span {
+.hero-orbit::before,
+.hero-orbit::after {
   position: absolute;
-  inset: 0;
-  border: 1px solid rgba(200, 161, 97, 0.16);
+  content: "";
+  border: 1px solid rgba(127, 149, 170, 0.18);
   border-radius: 50%;
-  animation: slow-spin 42s linear infinite;
 }
 
-.hero-orbit span:nth-child(2) {
-  inset: 16%;
-  border-color: rgba(200, 161, 97, 0.17);
-  animation-duration: 54s;
-  animation-direction: reverse;
+.hero-orbit::before {
+  inset: 18%;
 }
 
-.hero-orbit span:nth-child(3) {
-  inset: 31%;
-  border-color: rgba(208, 138, 100, 0.16);
-  animation-duration: 34s;
+.hero-orbit::after {
+  inset: 34%;
 }
 
 /* Runtime orchestration instrument: runtime lanes (Claude/Codex/Gemini/MCP)
@@ -570,8 +578,7 @@ p {
   position: relative;
   z-index: 4;
   width: 100%;
-  max-width: 460px;
-  margin-left: auto;
+  min-height: 560px;
   border: 1px solid rgba(200, 161, 97, 0.2);
   border-radius: 8px;
   background:
@@ -607,12 +614,12 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  padding: 16px 18px;
+  gap: 16px;
+  padding: 22px;
   border-bottom: 1px solid rgba(200, 161, 97, 0.14);
   color: var(--muted);
   font-family: var(--font-label);
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .instrument-top span,
@@ -629,10 +636,10 @@ p {
   position: relative;
   z-index: 2;
   display: grid;
-  width: min(300px, calc(100% - 64px));
+  width: min(360px, calc(100% - 52px));
   aspect-ratio: 1;
   place-items: center;
-  margin: 28px auto 16px;
+  margin: 42px auto 22px;
   border: 1px solid rgba(127, 149, 170, 0.18);
   border-radius: 50%;
 }
@@ -654,23 +661,22 @@ p {
 }
 
 .orbit-system img {
-  width: 34%;
+  width: 35%;
   opacity: 0.5;
 }
 
 .orbit-label {
   position: absolute;
   display: inline-grid;
-  min-width: 92px;
-  min-height: 34px;
-  padding: 0 10px;
+  min-width: 104px;
+  min-height: 36px;
   place-items: center;
   border: 1px solid rgba(200, 161, 97, 0.26);
   border-radius: 8px;
   background: rgba(15, 15, 16, 0.82);
   color: var(--ink);
   font-family: var(--font-label);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .label-claude {
@@ -701,20 +707,47 @@ p {
   position: relative;
   z-index: 2;
   display: grid;
-  gap: 8px;
-  padding: 0 18px 18px;
+  gap: 10px;
+  padding: 0 22px 22px;
 }
 
 .instrument-flow span {
   display: block;
-  min-height: 44px;
-  padding: 11px 15px;
+  min-height: 48px;
+  padding: 13px 16px;
   border: 1px solid rgba(200, 161, 97, 0.18);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.035);
   color: #ddd6cd;
   font-family: var(--font-label);
-  font-size: 13px;
+  font-size: 14px;
+}
+
+/* Short desktop viewports: shrink the B-sized panel so the full hero (incl.
+   proof ribbon) still fits one 100vh screen for PPT-style paging. */
+@media (min-width: 1024px) and (max-height: 859px) {
+  .hero {
+    padding-top: calc(var(--nav-h) + 12px);
+    padding-bottom: 50px;
+  }
+  .runtime-instrument {
+    min-height: 0;
+  }
+  .instrument-top {
+    padding: 16px 18px;
+  }
+  .orbit-system {
+    width: min(248px, calc(100% - 52px));
+    margin: 22px auto 16px;
+  }
+  .instrument-flow {
+    gap: 8px;
+    padding: 0 18px 18px;
+  }
+  .instrument-flow span {
+    min-height: 42px;
+    padding: 10px 14px;
+  }
 }
 
 .hero-shade {
@@ -756,6 +789,9 @@ p {
   gap: 12px;
 }
 
+/* Proof chips double as a bottom-LEFT decoration ribbon. Keep them pinned to the
+   hero's bottom-left (viewport-left padding edge) and left-aligned — do NOT
+   re-center this to the 1240px content box. (Per user request.) */
 .hero-proof {
   position: absolute;
   left: clamp(20px, 4vw, 32px);
@@ -788,6 +824,12 @@ p {
   justify-content: center;
   min-height: 46px;
   padding: 0 18px;
+  /* Reset native <button> chrome so a <button>.button looks identical to an
+     <a>.button (no 3D outset bevel). */
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  cursor: pointer;
   border-radius: 8px;
   font-family: var(--font-display);
   font-size: 14px;
@@ -810,6 +852,36 @@ p {
   color: var(--ink);
   border: 1px solid rgba(244, 241, 232, 0.22);
   background: rgba(255, 255, 255, 0.06);
+}
+
+/* "Coming soon" CTA: a click-reveal tooltip instead of a placeholder link. */
+.cta-coming-soon {
+  position: relative;
+}
+
+.cta-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  z-index: 5;
+  transform: translateX(-50%) translateY(4px);
+  padding: 6px 12px;
+  border: 1px solid rgba(200, 161, 97, 0.3);
+  border-radius: 8px;
+  background: rgba(15, 15, 16, 0.96);
+  color: var(--ink);
+  font-family: var(--font-label);
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.cta-coming-soon.show-tooltip .cta-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 
@@ -851,22 +923,6 @@ p {
     linear-gradient(90deg, rgba(200, 161, 97, 0.05) 1px, transparent 1px),
     radial-gradient(circle at 50% 50%, rgba(200, 161, 97, 0.12), transparent 28rem);
   background-size: 56px 56px, 56px 56px, 100% 100%;
-}
-
-.motion-backplane {
-  position: absolute;
-  top: 11vh;
-  right: -10vw;
-  width: min(980px, 68vw);
-  opacity: 0.32;
-  filter: saturate(1.2) contrast(1.1);
-}
-
-.motion-backplane img {
-  width: 100%;
-  border: 1px solid rgba(200, 161, 97, 0.18);
-  border-radius: 8px;
-  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.5);
 }
 
 .motion-rail {
@@ -1175,14 +1231,22 @@ p {
   max-width: 850px;
 }
 
+/* #system (Multi-Routing) is content-dense; tighten its vertical rhythm so the
+   label + heading + routing layers + metric band all fit one 100vh screen. */
+.system .section-label {
+  margin-bottom: clamp(16px, 3vw, 28px);
+}
+
+.system .section-heading {
+  margin-bottom: clamp(20px, 3vw, 36px);
+}
+
 .layer-stage {
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  min-height: 520px;
   gap: 18px;
-  align-items: center;
-  perspective: 1200px;
+  align-items: stretch;
 }
 
 .layer-beam {
@@ -1198,39 +1262,35 @@ p {
 
 .layer {
   position: relative;
-  min-height: 250px;
+  min-height: 176px;
   padding: 24px;
   border-radius: 8px;
   background:
     linear-gradient(160deg, rgba(255, 255, 255, 0.06), transparent 36%),
     var(--panel);
-  transform-style: preserve-3d;
 }
 
 .layer-a {
   border-color: rgba(200, 161, 97, 0.4);
-  transform: translateY(52px);
 }
 
 .layer-b {
   border-color: rgba(200, 161, 97, 0.4);
-  transform: translateY(-18px);
 }
 
 .layer-c {
   border-color: rgba(208, 138, 100, 0.4);
-  transform: translateY(24px);
 }
 
 .layer-d {
   border-color: rgba(166, 156, 189, 0.4);
-  transform: translateY(-52px);
 }
 
 .metric-band {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
+  margin-top: clamp(24px, 3vh, 40px);
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -1238,7 +1298,7 @@ p {
 }
 
 .metric-band div {
-  min-height: 126px;
+  min-height: 108px;
   padding: 22px;
   background:
     radial-gradient(circle at 80% 0, rgba(200, 161, 97, 0.08), transparent 48%),
@@ -1545,10 +1605,10 @@ p {
   gap: clamp(30px, 6vw, 72px);
   align-items: start;
   padding: clamp(28px, 5vw, 54px);
-  border: 1px solid rgba(107, 143, 126, 0.3);
+  border: 1px solid rgba(200, 161, 97, 0.3);
   border-radius: 8px;
   background:
-    linear-gradient(90deg, rgba(107, 143, 126, 0.1), transparent 52%),
+    linear-gradient(90deg, rgba(200, 161, 97, 0.1), transparent 52%),
     rgba(14, 15, 18, 0.84);
 }
 
@@ -1559,9 +1619,9 @@ p {
   width: 440px;
   height: 440px;
   content: "";
-  border: 1px solid rgba(107, 143, 126, 0.14);
+  border: 1px solid rgba(200, 161, 97, 0.14);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(107, 143, 126, 0.1), transparent 60%);
+  background: radial-gradient(circle, rgba(200, 161, 97, 0.1), transparent 60%);
 }
 
 .guardrail-list {
@@ -1578,9 +1638,11 @@ p {
   align-items: center;
   min-height: 64px;
   padding: 0 20px;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(107, 143, 126, 0.34);
   border-radius: 8px;
-  background: rgba(15, 15, 16, 0.52);
+  background:
+    linear-gradient(90deg, rgba(107, 143, 126, 0.12), transparent 64%),
+    rgba(15, 15, 16, 0.52);
   color: rgba(244, 241, 232, 0.88);
   font-weight: 690;
 }
@@ -1969,13 +2031,6 @@ p {
     max-width: 720px;
   }
 
-  .motion-backplane {
-    top: 34%;
-    right: -24vw;
-    width: 900px;
-    max-width: none;
-  }
-
   .motion-card {
     width: min(260px, 42vw);
     min-height: 158px;
@@ -2086,13 +2141,6 @@ p {
     max-width: 340px;
     margin-top: 18px;
     font-size: 16px;
-  }
-
-  .motion-backplane {
-    top: 26%;
-    right: -92vw;
-    width: 980px;
-    opacity: 0.22;
   }
 
   .motion-rail {
