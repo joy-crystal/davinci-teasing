@@ -140,7 +140,6 @@ const copy = {
     "proof.loc": "Runtime code.",
     "proof.tiers": "Gate before handoff.",
     "proof.studio": "Inspectable state.",
-    "proof.cta": "View Summary",
     "final.eyebrow": "Human intent. AI execution. System-level verification.",
     "final.title": "One verified production pipeline.",
     "final.body": "Davinci turns AI execution into routed, evidenced, team-ready software work.",
@@ -282,7 +281,6 @@ const copy = {
     "proof.loc": "Runtime 코드.",
     "proof.tiers": "Handoff 전 Gate.",
     "proof.studio": "추적 가능한 상태.",
-    "proof.cta": "View Summary",
     "final.eyebrow": "Human intent. AI execution. System-level verification.",
     "final.title": "하나의 검증된 Production Pipeline.",
     "final.body": "Davinci는 AI Execution을 Routed, Evidenced, Team-ready Software Work로 바꿉니다.",
@@ -466,7 +464,6 @@ function prepareStaggeredContent() {
         { selector: ".sticky-copy h2", delay: 360, motion: "left" },
         { selector: ".fracture-map", delay: 900, motion: "rail" },
         { selector: ".source-row span", delay: 1080, step: 70, motion: "fan" },
-        { selector: ".inline-cta", delay: 1280, motion: "rail" },
         { selector: ".statement-stack .statement", delay: 1320, step: 160, motion: "right" }
       ]
     },
@@ -547,8 +544,7 @@ function prepareStaggeredContent() {
         { selector: ".section-heading .eyebrow", delay: 220, motion: "left" },
         { selector: ".section-heading h2", delay: 360, motion: "left" },
         { selector: ".section-heading p:not(.eyebrow)", delay: 820, motion: "left" },
-        { selector: ".proof-grid article", delay: 1040, step: 90, motion: "fan" },
-        { selector: ".inline-cta", delay: 1640, motion: "rail" }
+        { selector: ".proof-grid article", delay: 1040, step: 90, motion: "fan" }
       ]
     },
     {
@@ -748,7 +744,7 @@ const REVEAL_STEP_MS = 55;
 const typeSelector =
   ".section-label, .eyebrow, h1, h2, .hero-line, .section-heading > p:not(.eyebrow), .motion-copy > p:not(.eyebrow), .constellation-copy > p:not(.eyebrow), .final-copy > p:not(.eyebrow)";
 const blockSelector =
-  ".hero-desc, .hero-actions, .hero-proof, .runtime-instrument, .fracture-map, .source-row, .inline-cta, .statement, .layer, .metric-band > div, .agent-map, .template-grid article, .design-flow article, .guardrail-list li, .ops-rail, .ops-proof-grid article, .comparison-matrix article, .proof-grid article, .motion-card, .final-actions";
+  ".hero-desc, .hero-actions, .hero-proof, .runtime-instrument, .fracture-map, .source-row, .statement, .layer, .metric-band > div, .agent-map, .template-grid article, .design-flow article, .guardrail-list li, .ops-rail, .ops-proof-grid article, .comparison-matrix article, .proof-grid article, .motion-card, .final-actions";
 
 function typeOutElement(element, baseOrder) {
   const text = element.textContent;

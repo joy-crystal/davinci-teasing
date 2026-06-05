@@ -1126,11 +1126,6 @@ p {
   line-height: 1.35;
 }
 
-.inline-cta {
-  width: fit-content;
-  margin-top: 22px;
-}
-
 .statement-stack {
   display: grid;
   gap: 18px;
