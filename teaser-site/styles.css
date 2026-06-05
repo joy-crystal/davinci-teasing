@@ -1942,8 +1942,7 @@ p {
 }
 
 @media (max-width: 980px) {
-  .ambient-cursor,
-  .chapter-rail {
+  .ambient-cursor {
     display: none;
   }
 
@@ -2291,5 +2290,101 @@ p {
   .comparison-matrix article,
   .proof-grid article {
     min-height: auto;
+  }
+}
+
+/* Mobile section nav: reuse the chapter-rail as a compact, always-visible
+   right-edge dot rail (no drawer). aria-current is updated on scroll by
+   chapterObserver, so the active dot + its label track automatically; tapping a
+   dot jumps to the section via its anchor. Scoped to mobile — desktop rail
+   (the labelled vertical list) is untouched. */
+@media (max-width: 980px) {
+  [data-section] {
+    scroll-margin-top: calc(var(--nav-h) + 10px);
+  }
+
+  .chapter-rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    position: fixed;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 60;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 9px 7px;
+    border: 1px solid rgba(200, 161, 97, 0.14);
+    border-radius: 999px;
+    background: rgba(15, 15, 16, 0.42);
+    backdrop-filter: blur(8px);
+  }
+
+  .chapter-rail a {
+    position: relative;
+    display: block;
+    width: 8px;
+    height: 8px;
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    border: 1px solid rgba(200, 161, 97, 0.42);
+    border-radius: 50%;
+    background: transparent;
+    transition: background 180ms ease, border-color 180ms ease, width 160ms ease, height 160ms ease;
+  }
+
+  .chapter-rail a span {
+    display: none;
+  }
+
+  /* Active dot: same box size as the others (so it stays perfectly centered, no
+     left shift) — emphasis comes from the gold fill + glow ring, not a resize. */
+  /* Cancel the desktop rail's translateX(-4px) in EVERY state (active, hover,
+     focus) so the dot never shifts left — incl. the sticky :hover/:focus a tap
+     can leave on mobile. */
+  .chapter-rail a,
+  .chapter-rail a:hover,
+  .chapter-rail a:focus,
+  .chapter-rail a:focus-visible,
+  .chapter-rail a[aria-current="true"] {
+    transform: none;
+  }
+
+  .chapter-rail a[aria-current="true"] {
+    background: var(--gold);
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(200, 161, 97, 0.16), 0 0 10px rgba(200, 161, 97, 0.5);
+  }
+
+  /* Section label tag to the left of its dot. Hidden by default; revealed for
+     the active dot only while .show-label is set (JS adds it on section change
+     and removes it ~1s later), so it gently fades in then out. */
+  .chapter-rail a b {
+    position: absolute;
+    right: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 4px 10px;
+    border: 1px solid rgba(200, 161, 97, 0.3);
+    border-radius: 999px;
+    background: rgba(15, 15, 16, 0.92);
+    color: var(--ink);
+    font-family: var(--font-label);
+    font-size: 11px;
+    font-weight: 400;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 600ms ease, visibility 600ms ease;
+  }
+
+  .chapter-rail.show-label a[aria-current="true"] b {
+    opacity: 1;
+    visibility: visible;
   }
 }

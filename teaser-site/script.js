@@ -326,6 +326,19 @@ function clamp(value, min = 0, max = 1) {
   return Math.min(max, Math.max(min, value));
 }
 
+let activeChapterName = null;
+let chapterLabelTimer;
+
+// Mobile dot rail: briefly reveal the active section's label, then fade it out
+// ~1s later (CSS handles the fade via .show-label). No-op on desktop.
+function flashChapterLabel() {
+  const rail = document.querySelector(".chapter-rail");
+  if (!rail) return;
+  rail.classList.add("show-label");
+  clearTimeout(chapterLabelTimer);
+  chapterLabelTimer = setTimeout(() => rail.classList.remove("show-label"), 1000);
+}
+
 function setActiveChapter(chapter) {
   if (!chapter || !chapterLinks.length) return;
 
@@ -337,6 +350,11 @@ function setActiveChapter(chapter) {
       link.removeAttribute("aria-current");
     }
   });
+
+  if (chapter !== activeChapterName) {
+    activeChapterName = chapter;
+    flashChapterLabel();
+  }
 }
 
 function updateActiveChapter() {
