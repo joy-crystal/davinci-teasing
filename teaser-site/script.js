@@ -615,7 +615,8 @@ function updateScrollEffects() {
 requestAnimationFrame(updateScrollEffects);
 
 // Section-unit wheel paging for desktop mouse/trackpad (PPT slide style).
-// One wheel notch always advances to the next section, no exceptions.
+// Keep the lock until the wheel stream goes idle so trackpad momentum cannot
+// trigger extra section jumps after the first gesture.
 const finePointer = window.matchMedia("(pointer: fine)");
 const pagerEnabled = () => !reduceMotion && window.innerWidth >= 700 && finePointer.matches;
 
@@ -681,12 +682,36 @@ function pageTo(targetY, onDone) {
   setTimeout(finalize, duration + 80);
 }
 
-let wheelCooldown = false;
+const wheelGestureIdleMs = 220;
+let wheelGestureLocked = false;
+let wheelIdleTimer = 0;
+let lastWheelAt = 0;
+
+function releaseWheelGestureWhenIdle() {
+  const elapsed = performance.now() - lastWheelAt;
+  if (isPaging || elapsed < wheelGestureIdleMs) {
+    window.clearTimeout(wheelIdleTimer);
+    wheelIdleTimer = window.setTimeout(
+      releaseWheelGestureWhenIdle,
+      Math.max(32, wheelGestureIdleMs - elapsed)
+    );
+    return;
+  }
+
+  wheelGestureLocked = false;
+}
+
+function armWheelGestureLock() {
+  lastWheelAt = performance.now();
+  window.clearTimeout(wheelIdleTimer);
+  wheelIdleTimer = window.setTimeout(releaseWheelGestureWhenIdle, wheelGestureIdleMs);
+}
 
 function handleWheel(event) {
   if (!pagerEnabled()) return;
   event.preventDefault();
-  if (isPaging || wheelCooldown) return;
+  armWheelGestureLock();
+  if (isPaging || wheelGestureLocked) return;
 
   const direction = event.deltaY > 0 ? 1 : event.deltaY < 0 ? -1 : 0;
   if (!direction) return;
@@ -699,12 +724,8 @@ function handleWheel(event) {
   const nextIndex = Math.round(clamp(currentIndex + direction, 0, points.length - 1));
   if (nextIndex === currentIndex) return;
 
-  wheelCooldown = true;
-  pageTo(points[nextIndex], () => {
-    setTimeout(() => {
-      wheelCooldown = false;
-    }, 40);
-  });
+  wheelGestureLocked = true;
+  pageTo(points[nextIndex], armWheelGestureLock);
 }
 
 function handlePagerKeys(event) {
