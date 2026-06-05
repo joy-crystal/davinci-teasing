@@ -63,16 +63,17 @@
       </nav>
       <div class="nav-actions">
         <div class="language-toggle" role="group" aria-label="Language selection">
-          <button type="button" data-lang-option="en" aria-pressed="true">EN</button>
-          <button type="button" data-lang-option="ko" aria-pressed="false">KR</button>
+          <button type="button" data-lang-option="en" aria-pressed="true" aria-label="Switch to English">EN</button>
+          <button type="button" data-lang-option="ko" aria-pressed="false" aria-label="한국어로 전환">KR</button>
         </div>
         <a
-          class="button primary nav-download"
+          class="button primary nav-download cta-coming-soon nav-coming-soon"
           href="https://github.com/andrewkim-gif/davinci-framework"
           target="_blank"
           rel="noopener"
+          data-coming-soon
           data-event="framework_install_click"
-          >Download</a
+          >Download<span class="cta-tooltip" data-i18n="final.cta.comingSoon" aria-hidden="true">Coming soon</span></a
         >
       </div>
     </header>
@@ -440,7 +441,7 @@
           <div class="final-actions" aria-label="Final actions">
             <button class="button primary cta-coming-soon" type="button" data-coming-soon data-event="desktop_download_click">
               <span data-i18n="final.cta.download">Download App</span>
-              <span class="cta-tooltip" data-i18n="final.cta.comingSoon">Coming soon</span>
+              <span class="cta-tooltip" data-i18n="final.cta.comingSoon" aria-hidden="true">Coming soon</span>
             </button>
             <a class="button secondary" href="https://github.com/andrewkim-gif/davinci-framework" target="_blank" rel="noopener" data-event="framework_install_click" data-i18n="final.cta.framework">Install Framework</a>
           </div>

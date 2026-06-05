@@ -409,63 +409,6 @@ h2 {
   text-wrap: balance;
 }
 
-[data-typing-title] {
-  overflow: visible;
-}
-
-[data-typing-title] .typing-word {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-[data-typing-title] .typing-space {
-  white-space: pre;
-}
-
-[data-typing-title] .typing-char {
-  display: inline-block;
-  opacity: 1;
-  filter: none;
-  transform: none;
-  transition: none;
-}
-
-html.typing-ready [data-section].is-visible [data-typing-title] .typing-char {
-  opacity: 1;
-  filter: blur(0);
-  transform: translateY(0);
-}
-
-html.typing-ready .parallax-story.is-pinned [data-typing-title] .typing-char,
-html.typing-ready .parallax-story.is-after [data-typing-title] .typing-char {
-  opacity: 1;
-  filter: blur(0);
-  transform: translateY(0);
-}
-
-[data-stagger-item] {
-  opacity: 0;
-  filter: none;
-  translate: 0 var(--stagger-distance, 18px);
-  scale: 1;
-  transition:
-    opacity 360ms ease,
-    translate 520ms cubic-bezier(0.19, 1, 0.22, 1),
-    scale 520ms cubic-bezier(0.19, 1, 0.22, 1);
-  will-change: opacity, filter, translate, scale;
-}
-
-[data-stagger-item].is-stagger-visible {
-  opacity: 1;
-  filter: blur(0);
-  translate: 0 0;
-}
-
-[data-stagger-item][data-scroll-motion] {
-  translate: var(--motion-x, 0px) var(--motion-y, var(--stagger-distance, 18px));
-  scale: var(--motion-scale, 1);
-}
-
 h3 {
   font-size: clamp(22px, 3.2vw, 34px);
   line-height: 1.04;
@@ -861,27 +804,92 @@ p {
 
 .cta-tooltip {
   position: absolute;
-  bottom: calc(100% + 10px);
+  bottom: calc(100% + 12px);
   left: 50%;
   z-index: 5;
-  transform: translateX(-50%) translateY(4px);
-  padding: 6px 12px;
-  border: 1px solid rgba(200, 161, 97, 0.3);
-  border-radius: 8px;
-  background: rgba(15, 15, 16, 0.96);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 15px;
+  border: 1px solid rgba(200, 161, 97, 0.42);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(38, 32, 20, 0.97), rgba(15, 15, 16, 0.97));
   color: var(--ink);
   font-family: var(--font-label);
   font-size: 12px;
   font-weight: 400;
+  letter-spacing: 0.02em;
   white-space: nowrap;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.46), 0 0 20px rgba(200, 161, 97, 0.16);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 180ms ease, transform 180ms ease;
+  transform: translateX(-50%) translateY(8px) scale(0.9);
+  transform-origin: bottom center;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+/* pending status dot */
+.cta-tooltip::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 8px rgba(200, 161, 97, 0.85);
+}
+
+/* speech-bubble tail: a rotated square so its two outward edges carry the same
+   gold outline as the bubble border, while the inner corner tucks behind it. */
+.cta-tooltip::after {
+  content: "";
+  position: absolute;
+  top: calc(100% - 5px);
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  transform: translateX(-50%) rotate(45deg);
+  background: rgba(28, 24, 15, 0.97);
+  border-right: 1px solid rgba(200, 161, 97, 0.42);
+  border-bottom: 1px solid rgba(200, 161, 97, 0.42);
+  border-bottom-right-radius: 2px;
 }
 
 .cta-coming-soon.show-tooltip .cta-tooltip {
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  transform: translateX(-50%) translateY(0) scale(1);
+  transition: opacity 180ms ease, transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cta-coming-soon.show-tooltip .cta-tooltip::before {
+  animation: toast-dot-pulse 1.1s ease-in-out infinite;
+}
+
+@keyframes toast-dot-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.68); }
+}
+
+/* GNB download sits in the top nav, so its toast opens DOWNWARD (tail points up). */
+.nav-coming-soon .cta-tooltip {
+  top: calc(100% + 12px);
+  bottom: auto;
+  transform-origin: top center;
+  transform: translateX(-50%) translateY(-8px) scale(0.9);
+}
+
+.nav-coming-soon.show-tooltip .cta-tooltip {
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.nav-coming-soon .cta-tooltip::after {
+  top: -5px;
+  bottom: auto;
+  border-right: none;
+  border-bottom: none;
+  border-top: 1px solid rgba(200, 161, 97, 0.42);
+  border-left: 1px solid rgba(200, 161, 97, 0.42);
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 2px;
 }
 
 
@@ -1916,27 +1924,6 @@ p {
   }
 }
 
-[data-section] [data-stagger-item] {
-  transition:
-    opacity 720ms ease,
-    filter 820ms ease,
-    translate 820ms cubic-bezier(0.19, 1, 0.22, 1),
-    scale 820ms cubic-bezier(0.19, 1, 0.22, 1),
-    border-color 180ms ease,
-    background 180ms ease,
-    transform 180ms ease,
-    box-shadow 180ms ease;
-}
-
-[data-section] [data-stagger-item][data-scroll-motion] {
-  transition:
-    opacity 360ms ease,
-    border-color 180ms ease,
-    background 180ms ease,
-    transform 180ms ease,
-    box-shadow 180ms ease;
-}
-
 @keyframes slow-spin {
   to {
     transform: rotate(360deg);
@@ -1944,28 +1931,6 @@ p {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-typing-title] .typing-char {
-    opacity: 1;
-    filter: none;
-    transform: none;
-    transition: none;
-  }
-
-  [data-stagger-item] {
-    opacity: 1;
-    filter: none;
-    translate: 0 0;
-    scale: 1;
-    transition: none;
-  }
-
-  [data-stagger-item][data-scroll-motion] {
-    opacity: 1;
-    filter: none;
-    translate: 0 0;
-    scale: 1;
-  }
-
   *,
   *::before,
   *::after {
@@ -1978,8 +1943,7 @@ p {
 
 @media (max-width: 980px) {
   .ambient-cursor,
-  .chapter-rail,
-  .hero-console {
+  .chapter-rail {
     display: none;
   }
 
